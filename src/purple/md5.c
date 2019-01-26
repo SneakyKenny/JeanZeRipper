@@ -1,15 +1,6 @@
-# include <stdio.h>
+# include "md5.h"
 
-# include <string.h>
-
-# include <openssl/conf.h>
-# include <openssl/evp.h>
-# include <openssl/err.h>
-# include <openssl/md5.h>
-
-# define TEXT_1 "ThisIsSomeReallyLongTextWithNoSpaces"
-# define TEXT_2 "This is another long text but this one has spaces."
-
+static
 void md5_hash_from_string(char *s, char *hash)
 {
 	int i;
@@ -21,12 +12,11 @@ void md5_hash_from_string(char *s, char *hash)
 		sprintf(hash + 2 * i, "%02x", md5[i]);
 }
 
-int main(void)
+char *make_md5(char *s)
 {
-	char *s = TEXT_1;
-	char md5_hash[2 * MD5_DIGEST_LENGTH + 1] = "";
+	char *md5_hash = malloc(sizeof(char) * 32);
+	
 	md5_hash_from_string(s, md5_hash);
-	printf("original: %s\n", s);
-	printf("encoded:  %s\n", md5_hash);
-	return 0;
+
+	return md5_hash;
 }

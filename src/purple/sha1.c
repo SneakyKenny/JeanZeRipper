@@ -1,4 +1,4 @@
-# include "sha1.h"
+# include "hash.h"
 
 static
 void sha1_hash_from_string(char *s, char *hash)

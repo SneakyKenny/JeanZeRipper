@@ -1,4 +1,4 @@
-# include "md5.h"
+# include "hash.h"
 
 static
 void md5_hash_from_string(char *s, char *hash)

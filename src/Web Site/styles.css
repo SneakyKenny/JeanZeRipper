@@ -1,0 +1,169 @@
+/* this file allow some dynamics effects on the web site */
+
+/* the shapping of text */
+body
+{
+    width: 100%;
+    font-family: "Source code pro", cursive, serif;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(240, 240, 240);
+}
+
+/* allow the background color and the broder of a paragraph */
+.grey
+{
+    background-color: rgba(180,0,0, 0.05);
+    width: 580px;
+    height: auto;
+    padding: 50px;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 200px;
+    border-style: solid;
+    border width: 5px;
+    border-color: darkgrey;
+}
+
+
+/* menu of top */
+nav a
+{
+    color: rgb(240, 240, 240);
+    text-align: center;
+    font-size: 18px;
+    font-family: .SF UI Text;
+    display: inline-table;
+    text-decoration: none;
+    padding: 13px 0px;
+    width: 155px;
+}
+
+
+nav #a1 
+{
+    color: rgb(240, 240, 240);
+    text-align: center;
+    font-size: 18px;
+    font-family: .SF UI Text;
+    display: inline-table;
+    text-decoration: none;
+    padding: 13px 0px;
+    width: 110px;
+    float: right;
+}
+
+nav li :hover
+{
+    background-color: cadetblue;
+}
+
+nav li1 :hover
+{
+    background-color: cadetblue;
+}
+
+nav
+{
+    width: 100%;
+    background-color: rgba(10,10,10, 0.5);
+    position: sticky; /* Sticky/fixed navbar */
+    width: 100%;
+    top: 0; /* At the top */
+}
+
+nav ul
+{
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+nav li
+{
+    list-style-type: none;
+    float: left;
+}
+
+nav li1
+{
+    list-style-type: none;
+    float: right;
+}
+
+/* menu of bottom (footer) */
+
+.footer-menu
+{
+    width: 100%;
+    height: 90px;
+    margin: auto;
+    margin-top: 20px;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.footer-menu ul
+{
+    margin: 0px;
+    padding: 0px;
+    text-align:center;
+}
+
+.footer-menu ul li
+{
+    display: inline-block;
+    margin: 20px;
+}
+
+.footer-menu ul li a
+{
+    font-family: .SF UI Text;
+    font-size: 15ox;
+    font-weight: 600;
+    color: burlywood;
+    text-transform: uppercase;
+}
+
+/* anchor button which allows to go back on top  */
+
+a#cRetour
+{
+    border-radius:12px;
+    padding:10px;
+    font-size:15px;
+    text-align:center;
+    color:#fff;
+    background:rgba(0, 0, 0, 0.3);
+    position:fixed;
+    right:90px;
+    opacity:1;
+    z-index:99999;
+    transition:all ease-in 0.3s;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    text-decoration: none;
+}
+
+a#cRetour:before
+{ 
+    content: "\25b2"; 
+}
+
+a#cRetour:hover
+{
+    background:rgba(0, 0, 0, 1);
+    transition:all ease-in 0.3s;
+}
+
+a#cRetour.cInvisible
+{
+    bottom:-30px;
+    opacity:0;
+    transition:all ease-in 0.5s;
+}
+
+a#cRetour.cVisible
+{
+    bottom:100px;
+    opacity:1;
+}

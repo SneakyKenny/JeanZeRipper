@@ -2,7 +2,9 @@ Jean Ze Ripper
 ===
 
 Première soutenance : du 18 au 22 février 2019
+
 Deuxième soutenance : du 1 au 5 avril 2019
+
 Troisième et dernière soutenance : du 20 au 24 mai 2019
 
 ## Links

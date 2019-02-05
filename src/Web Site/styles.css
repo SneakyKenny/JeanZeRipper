@@ -4,7 +4,7 @@
 body
 {
     width: 100%;
-    font-family: "Source code pro", cursive, serif;
+    font-family: 'Concert One', cursive;
     margin: 0px;
     padding: 0px;
     background-color: rgb(240, 240, 240);
@@ -32,7 +32,7 @@ nav a
     color: rgb(240, 240, 240);
     text-align: center;
     font-size: 18px;
-    font-family: .SF UI Text;
+    font-family: 'Concert One', cursive;
     display: inline-table;
     text-decoration: none;
     padding: 13px 0px;
@@ -45,7 +45,7 @@ nav #a1
     color: rgb(240, 240, 240);
     text-align: center;
     font-size: 18px;
-    font-family: .SF UI Text;
+    font-family: 'Concert One', cursive;
     display: inline-table;
     text-decoration: none;
     padding: 13px 0px;
@@ -117,7 +117,7 @@ nav li1
 
 .footer-menu ul li a
 {
-    font-family: .SF UI Text;
+    font-family: 'Concert One', cursive;;
     font-size: 15ox;
     font-weight: 600;
     color: burlywood;

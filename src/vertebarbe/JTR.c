@@ -1,8 +1,7 @@
-#include <stdio.h>
-#include <err.h>
-#include <unistd.h>
 #include <string.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "dictionaries.h"
 
 int print_help()
@@ -15,16 +14,16 @@ int print_help()
 
 int main (int argc, char **argv)
 {
-	if (argc==1)
+	if (argc == 1)
 		print_help();
 
 	if (strcmp(argv[1], "dict")==0)
 	{
-		/*if (argv[4]=="para")
-			printf("Result from dictionary (OpenMP): %s\n", dict_attack_omp(argv[2], argv[3]));
+		if (argc == 5)
+			dict_attack(argv[2], argv[3], atoi(argv[4]));
 
-		else*/
-		printf("Result from dictionary : %s\n", dict_attack(argv[2], argv[3]));
+		else
+			dict_attack(argv[2], argv[3], 32);
 	}
 
 	//print_help();

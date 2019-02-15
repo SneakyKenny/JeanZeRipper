@@ -1,6 +1,6 @@
 # include "hash.h"
 
-static
+//static
 void md5_hash_from_string(char *s, char *hash)
 {
 	int i;

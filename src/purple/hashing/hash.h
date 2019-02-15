@@ -12,6 +12,7 @@
 # ifndef HASH_H
 # define HASH_H
 
+void md5_hash_from_string(char *s, char *hash);
 char *make_md5(char *src);
 char *make_sha1(char *src);
 char *make_sha256(char *src);

@@ -12,6 +12,6 @@
 #ifndef DICT_ATTACK_H
 #define DICT_ATTACK_H
 
-void dict_attack(const char *targetPath, const char *dictPath, unsigned char maxCheck);
+void dict_attack(const char *targetPath, const char *dictPath, void (*hash_func) (char *, char *), unsigned char maxCheck, unsigned char hashLen);
 
 #endif

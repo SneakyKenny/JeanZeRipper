@@ -11,6 +11,7 @@ struct DData
 	char *map;
 };
 
+
 /*
 int firstSmaller(const char *targetPath, const char *dictPath)
 {
@@ -24,11 +25,12 @@ int firstSmaller(const char *targetPath, const char *dictPath)
 
 }
 */
-int is_same(char *target, char *hash, unsigned char len) //len is the max char we want to check. close to zero => false positives
-{
-	if (len > 32 || len == 0)
-		errx(EXIT_FAILURE, "Invalid length !\n");
 
+
+int is_same(char *target, char *hash, unsigned char len, unsigned char hashLen) //len is the max char we want to check. close to zero => false positives
+{
+	if (len > hashLen || len == 0)
+		errx(EXIT_FAILURE, "Invalid length !\n");
 	for (unsigned char i = 0; i < len; i++)
 		if (target[i] != hash[i])
 			return 0;
@@ -36,7 +38,7 @@ int is_same(char *target, char *hash, unsigned char len) //len is the max char w
 	return 1;
 }
 
-void hash_and_compare(struct DData targets, struct DData dico, size_t buffLen, unsigned char maxCheck)
+void hash_and_compare(struct DData targets, struct DData dico, size_t buffLen, void (*hash_func)(char *, char *), unsigned char maxCheck, unsigned char hashLen)
 {
 	off_t tLen = targets.St.st_size;
 	off_t dLen = dico.St.st_size;
@@ -44,11 +46,10 @@ void hash_and_compare(struct DData targets, struct DData dico, size_t buffLen, u
 	char *dMap = dico.map;
 
 	char *toHash = malloc(buffLen);
-	char *hashed = malloc(33); //length of an md5 hash is 32B
-	hashed[32] = 0; // we use strlen
+	char *hashed = malloc(hashLen + 1); //length of an md5 hash is 32B
+	hashed[hashLen] = 0; // we use strlen
 	off_t prev = 0; //offset of the previous line in dico
 	off_t j = prev;
-
 	while (j < dLen)
 	{
 		for (j = prev; j < dLen && dMap[j] != '\n'; j++)
@@ -58,11 +59,11 @@ void hash_and_compare(struct DData targets, struct DData dico, size_t buffLen, u
 
 		toHash[j-prev] = 0; //we use strlen
 		prev = j + 1; //We skip the '\n'
-		md5_hash_from_string(toHash, hashed);
+		hash_func(toHash, hashed);
 
-		for (off_t k = 0; k < tLen; k+=32)
+		for (off_t k = 0; k < tLen; k+=hashLen)
 		{
-			if (is_same(tMap + k, hashed, maxCheck))
+			if (is_same(tMap + k, hashed, maxCheck, hashLen))
 				printf("%s:%s\n", hashed, toHash);
 			k++;
 		}
@@ -105,7 +106,7 @@ struct DData get_data(const char *path)
 	return data;
 }
 
-void dict_attack(const char *targetPath, const char *dictPath, unsigned char maxCheck)
+void dict_attack(const char *targetPath, const char *dictPath, void (*hash_f) (char *, char *), unsigned char maxCheck, unsigned char hashLen)
 {
 	printf("Loading hashes...\n");
 
@@ -117,7 +118,7 @@ void dict_attack(const char *targetPath, const char *dictPath, unsigned char max
 
 	printf("hashing dictionary and comparing entries...\n");
 
-	hash_and_compare(targets, dico, 50, maxCheck);
+	hash_and_compare(targets, dico, 50, hash_f, maxCheck, hashLen);
 
 
 	munmap(targets.map, targets.St.st_size);

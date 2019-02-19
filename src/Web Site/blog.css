@@ -1,30 +1,96 @@
-/* this file allow some dynamics effects on the web site */
-
-/* the shapping of text */
 body
 {
     width: 100%;
     font-family: cursive;
     margin: 0px;
     padding: 0px;
-    background-color: rgb(240, 240, 240);
+    background: #FFF9FF;
 }
 
-/* allow the background color and the broder of a paragraph */
-.grey
+/* Zigzag */
+
+.zigzag
 {
-    background-color: rgba(180,0,0, 0.05);
-    width: 580px;
-    height: auto;
-    padding: 50px;
-    margin: auto;
-    text-align: center;
-    margin-bottom: 200px;
-    border-style: solid;
-    border width: 5px;
-    border-color: darkgrey;
+    width: 100%;
+    min-height: 150px;
+    position: relative;
+    background: #ff6666;
 }
 
+.zigzag:before
+{
+    min-height: 180px;
+    content: '';
+    position: absolute;
+    /*bottom: 0;
+    left: 0:*/
+    width: 100%;
+    height: 15px;
+    display: block;
+    background: linear-gradient(
+        -45deg, transparent 30%, 
+        #ff6666 30%, #ff6666 60%, 
+        transparent 60%
+        ),
+        linear-gradient(
+        45deg, transparent 30%, 
+        #ff6666 30%, #ff6666 60%, 
+        transparent 60%
+        );
+    background-size: 30px 60px;
+    transform: rotateX(180deg);
+}
+
+/* upadtes post */
+
+img
+{
+  vertical-align:middle;
+}
+
+.post-image
+{
+    text-align: center;
+    margin-left: 200px;
+    margin-right: 20px;
+    float: left;
+}
+
+.post-title
+{
+    height: 15px;
+    width: 50%;
+    text-align: left;
+    margin-left: 500px;
+}
+
+.post-date
+{
+    color: #666;
+    font-size: .9em;
+    font-weight: 400;
+    margin: 10px 0;
+    text-decoration: none;
+    text-align: left;
+    margin-left: 500px;
+}
+
+.post-text .post-copy
+{
+    text-align: justify;
+    margin-left: 500px;
+    padding-top: 10px;
+    width: 45%;
+    height: auto;
+}
+
+hr {
+    display: block;
+    unicode-bidi: isolate;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 2px;
+}
 
 /* menu of top */
 nav a
@@ -65,8 +131,8 @@ nav li1 :hover
 nav
 {
     width: 100%;
-    background-color: rgba(10,10,10, 0.5);
-    position: sticky; /* Sticky/fixed navbar */
+    background-color: rgba(10,10,10, 0.65);
+    position: static;
     width: 100%;
     top: 0; /* At the top */
 }
@@ -120,6 +186,15 @@ nav li1
     font-size: 15ox;
     font-weight: 600;
     color: burlywood;
+    text-transform: uppercase;
+}
+
+.footer-menu ul li a1
+{
+    font-family: cursive;
+    font-size: 15ox;
+    font-weight: 600;
+    color: #ff6666;
     text-transform: uppercase;
 }
 

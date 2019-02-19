@@ -6,13 +6,13 @@ CFLAGS = -Wall -Wextra -std=c99
 LDFLAGS =
 LDLIBS =
 
-OBJ = main.o
+OBJ = alphabet.o
 
-all: main
+all: alphabet
 
-main: ${OBJ}
+alphabet: ${OBJ}
 
 clean:
-	${RM} ${OBJ} main
+	${RM} ${OBJ} *.d *.o alphabet
 
 # END

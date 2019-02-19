@@ -10,22 +10,6 @@ body
     background-color: rgb(240, 240, 240);
 }
 
-/* allow the background color and the broder of a paragraph */
-.grey
-{
-    background-color: rgba(180,0,0, 0.05);
-    width: 580px;
-    height: auto;
-    padding: 50px;
-    margin: auto;
-    text-align: center;
-    margin-bottom: 200px;
-    border-style: solid;
-    border width: 5px;
-    border-color: darkgrey;
-}
-
-
 /* menu of top */
 nav a
 {
@@ -90,6 +74,26 @@ nav li1
     float: right;
 }
 
+/* links posts */
+
+.post-image
+{
+    text-align: center;
+    margin-left: 300px;
+    margin-right: 20px;
+    float: left;
+}
+
+.post-text
+{
+    text-align: justify;
+    margin-left: 500px;
+    padding-top: 10px;
+    width: 45%;
+    height: auto;
+}
+
+
 /* menu of bottom (footer) */
 
 .footer-menu
@@ -120,6 +124,15 @@ nav li1
     font-size: 15ox;
     font-weight: 600;
     color: burlywood;
+    text-transform: uppercase;
+}
+
+.footer-menu ul li b
+{
+    font-family: cursive;
+    font-size: 15ox;
+    font-weight: 600;
+    color: #ff6666;
     text-transform: uppercase;
 }
 

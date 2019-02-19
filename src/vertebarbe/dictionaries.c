@@ -1,24 +1,19 @@
-#include <stdio.h>
+#include "dictionaries.h"
+#include "../purple/hashing/hash.h"
 #include <omp.h>
-#include <err.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-//#include "htab/htab.h"
-#include "../purple/hash.h"
-#include <sys/mman.h>
-
-
 
 //TODO : Function to choose hash function from integrer
 //
 //TODO : Function which puts targets in hash table if
 //		 there is more target than words in dict (extreme case)
+struct DData
+{
+	struct stat St;
+	char *map;
+};
 
+
+/*
 int firstSmaller(const char *targetPath, const char *dictPath)
 {
 	struct stat targetBuff;
@@ -30,10 +25,66 @@ int firstSmaller(const char *targetPath, const char *dictPath)
 	return (targetBuff.st_size < dictBuff.st_size) ;
 
 }
+*/
 
-/* Returns a hashtable containing all dictionary hashes with value
-   Puts the number of hashes in length */
-char *get_targets(const char *targetPath)
+
+int is_same(char *target, char *hash, unsigned char len, unsigned char hashLen) //len is the max char we want to check. close to zero => false positives
+{
+	if (len > hashLen || len == 0)
+		errx(EXIT_FAILURE, "Invalid length !\n");
+	for (unsigned char i = 0; i < len; i++)
+		if (target[i] != hash[i])
+			return 0;
+
+	return 1;
+}
+
+void hash_and_compare(struct DData targets, struct DData dico, size_t buffLen, void (*hash_func)(char *, char *), unsigned char maxCheck, unsigned char hashLen)
+{
+	off_t tLen = targets.St.st_size;
+	off_t dLen = dico.St.st_size;
+	char *tMap = targets.map;
+	char *dMap = dico.map;
+	size_t nbTargets = tLen / (hashLen + 1); // + \n
+
+	#pragma omp parallel num_threads(4)
+	{
+		int tid = omp_get_thread_num();
+		off_t chunk = dLen / 4;
+		char *toHash = malloc(buffLen);
+		char *hashed = malloc(hashLen + 1); //length of an md5 hash is 32B
+		hashed[hashLen] = 0; // we use strlen
+		off_t prev = tid * chunk; //offset of the previous line in dico
+		off_t end = (tid + 1) * chunk; //we stop at the begining of the next thread
+		off_t j = prev;
+
+		while (j < dLen && j < end && nbTargets > 0)
+		{
+			for (j = prev; j < dLen && dMap[j] != '\n'; j++)
+			{
+				toHash[j-prev] = dMap[j];
+			}
+
+			toHash[j-prev] = 0; //we use strlen
+			prev = j + 1; //We skip the '\n'
+			hash_func(toHash, hashed);
+			
+			for (off_t k = 0; k < tLen && nbTargets > 0; k+=hashLen)
+			{
+				if (is_same(tMap + k, hashed, maxCheck, hashLen))
+				{
+					printf("%s:%s\n", hashed, toHash);
+					nbTargets--;
+				}
+				k++;
+			}
+		}
+		free(toHash);
+		free(hashed);
+	}
+}
+
+void get_targets(const char *targetPath, struct DData *data)
 {
 	struct stat targetSt;
 	if (stat(targetPath, &targetSt) == -1)
@@ -55,22 +106,33 @@ char *get_targets(const char *targetPath)
 	if (mTargets == MAP_FAILED)
 		errx(EXIT_FAILURE, "Could not map file to memory");
 
-
+	data->St = targetSt;
+	data->map = mTargets;
 	close(targetsFd);
-
-	return mTargets;
 }
 
-void dict_attack(const char *targetPath, const char *dictPath)
+struct DData get_data(const char *path)
 {
-	printf("[+] Loading hashes\n");
+	struct DData data;
+	get_targets(path, &data);
+	return data;
+}
 
-	size_t dicoLen = 0;
-	//int lessTargets = firstSmaller(targetPath, dictPath);
-	char *mTargets = get_targets(targetPath);
+void dict_attack(const char *targetPath, const char *dictPath, void (*hash_f) (char *, char *), unsigned char maxCheck, unsigned char hashLen)
+{
+	printf("Loading hashes...\n");
 
-	if (mTargets == NULL)
-		errx(EXIT_FAILURE, "Could not load hashes, check your targets file");
+	struct DData targets = get_data(targetPath);
 
-	//free(mTargets);
+	printf("Loading dictionary...\n");
+
+	struct DData dico = get_data(dictPath);
+
+	printf("hashing dictionary and comparing entries...\n");
+
+	hash_and_compare(targets, dico, 4096, hash_f, maxCheck, hashLen);
+
+
+	munmap(targets.map, targets.St.st_size);
+	munmap(dico.map, dico.St.st_size);
 }

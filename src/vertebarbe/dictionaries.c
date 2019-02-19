@@ -6,12 +6,6 @@
 //
 //TODO : Function which puts targets in hash table if
 //		 there is more target than words in dict (extreme case)
-struct DData
-{
-	struct stat St;
-	char *map;
-};
-
 
 /*
 int firstSmaller(const char *targetPath, const char *dictPath)
@@ -118,7 +112,7 @@ struct DData get_data(const char *path)
 	return data;
 }
 
-void dict_attack(const char *targetPath, const char *dictPath, void (*hash_f) (char *, char *), unsigned char maxCheck, unsigned char hashLen)
+void dict_attack(const char *targetPath, const char *dictPath, struct BData infos)
 {
 	printf("Loading hashes...\n");
 
@@ -130,7 +124,7 @@ void dict_attack(const char *targetPath, const char *dictPath, void (*hash_f) (c
 
 	printf("hashing dictionary and comparing entries...\n");
 
-	hash_and_compare(targets, dico, 4096, hash_f, maxCheck, hashLen);
+	hash_and_compare(targets, dico, 4096, infos.hash_func, infos.maxCheck, infos.hashLen);
 
 
 	munmap(targets.map, targets.St.st_size);

@@ -2,9 +2,9 @@
 
 CC=gcc -fsanitize=address -g3
 CPPFLAGS=
-CFLAGS= -Wall -Wextra -std=c99
+CFLAGS= -Wall -Wextra -std=c99 -fopenmp
 LDFLAGS=
-LDLIBS= -lcrypto -lssl
+LDLIBS= -lcrypto -lssl -fopenmp
 
 SRC=  dictionaries.c JTR.c ../purple/hashing/md5.c ../purple/hashing/sha1.c ../purple/hashing/sha256.c
 OBJ= ${SRC:.c=.o}

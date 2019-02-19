@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <err.h>
 #include <stdio.h>
-#include <omp.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>

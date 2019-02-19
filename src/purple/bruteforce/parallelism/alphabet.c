@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include <err.h>
 
+#include "omp.h"
+
 const char *alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
 
 static void generate(int maxlen)
@@ -25,6 +27,7 @@ static void generate(int maxlen)
 
     //write(STDOUT_FILENO, buffer, buflen);
 
+    #pragma omp parallel
     for (int len = 2; len <= maxlen; len++)
     {
         int stride = len + 1;
@@ -36,6 +39,7 @@ static void generate(int maxlen)
             int let0 = 0;
             int let1 = 0;
             
+            #pragma omp for
 	    for (int i = len - 2; i < bufLen; i += stride)
             {
                 buffer[i] = alphabet[let0];
@@ -60,8 +64,7 @@ static void generate(int maxlen)
             letters[i] = 0;
 
         int i = len - 3;
-        do 
-	{
+        do {
             letters[i]++;
 
             if (letters[i] >= alphaLen)

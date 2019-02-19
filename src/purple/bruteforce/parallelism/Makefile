@@ -1,9 +1,9 @@
 # Makefile
 
-CC=gcc
+CC=gcc -fopenmp
 CPPFLAGS=
 CFLAGS=-Wall -Wextra -std=c99
-LDFLAGS=-fopenmp
+LDFLAGS=
 LDLIBS=
 
 OBJ = alphabet.o

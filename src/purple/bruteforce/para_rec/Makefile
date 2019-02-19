@@ -2,11 +2,11 @@
 
 CC = gcc
 CPPFLAGS = -MMD
-CFLAGS = -Wall -Wextra -std=c99 -fopenmp
+CFLAGS = -Wall -Wextra -std=c99
 LDFLAGS =
 LDLIBS =
 
-OBJ = main.o
+OBJ = brute_rec.o main.o
 
 all: main
 

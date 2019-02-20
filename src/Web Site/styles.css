@@ -4,7 +4,7 @@
 body
 {
     width: 100%;
-    font-family: cursive;
+    font-family: serif;
     margin: 0px;
     padding: 0px;
     background-color: rgb(240, 240, 240);
@@ -32,7 +32,7 @@ nav a
     color: rgb(240, 240, 240);
     text-align: center;
     font-size: 18px;
-    font-family: cursive;
+    font-family: serif;
     display: inline-table;
     text-decoration: none;
     padding: 13px 0px;
@@ -44,7 +44,7 @@ nav #a1
     color: rgb(240, 240, 240);
     text-align: center;
     font-size: 18px;
-    font-family: cursive;
+    font-family: serif;
     display: inline-table;
     text-decoration: none;
     padding: 13px 0px;
@@ -116,8 +116,8 @@ nav li1
 
 .footer-menu ul li a
 {
-    font-family: cursive;
-    font-size: 15ox;
+    font-family: serif;
+    font-size: 15px;
     font-weight: 600;
     color: burlywood;
     text-transform: uppercase;

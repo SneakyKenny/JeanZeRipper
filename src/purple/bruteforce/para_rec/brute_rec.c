@@ -43,7 +43,7 @@ void bruteSequential(int maxLen, struct BData infos)
 
     	for (int i = 1 + tid * chunk; i <= lim && i <= maxLen; ++i)
     	{
-    		//memset(buf, 0, maxLen + 1);
+    		memset(buf, 0, maxLen + 1);
     		bruteImpl(buf, 0, i, infos);
     	}
 

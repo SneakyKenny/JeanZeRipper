@@ -1,4 +1,5 @@
 #include "brute_rec.h"
+#include <omp.h>
 
 static
 void bruteImpl(char* str, int index, int maxDepth, struct BData infos)
@@ -30,18 +31,25 @@ void bruteImpl(char* str, int index, int maxDepth, struct BData infos)
 
 void bruteSequential(int maxLen, struct BData infos)
 {
-    char *buf = calloc(1, maxLen + 1);
-	char *hashbuf = calloc(1, infos.hashLen + 1);
-	infos.hashbuf = hashbuf;
 
-    for (int i = 1; i <= maxLen; ++i)
-    {
-        memset(buf, 0, maxLen + 1);
-        bruteImpl(buf, 0, i, infos);
-    }
+	int chunk = maxLen / 4;
+	#pragma omp parallel num_threads(4)
+	{
+		int tid = omp_get_thread_num();
+		int lim = (tid + 1) * chunk;
+		char *buf = calloc(1, maxLen + 1);
+		char *hashbuf = calloc(1, infos.hashLen + 1);
+		infos.hashbuf = hashbuf;
 
-    free(buf);
-	free(hashbuf);
+    	for (int i = 1 + tid * chunk; i <= lim && i <= maxLen; ++i)
+    	{
+    		//memset(buf, 0, maxLen + 1);
+    		bruteImpl(buf, 0, i, infos);
+    	}
+
+    	free(buf);
+		free(hashbuf);
+	}
 }
 
 void brut_attack(const char *targetPath, int maxLen, struct BData infos)

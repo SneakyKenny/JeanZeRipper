@@ -16,14 +16,14 @@ static void generate(int maxlen)
         errx(1, "Malloc failed");
 
     int j = 0;
-    //int buflen = 2 * alphaLen;
+    int buflen = 2 * alphaLen;
     for (int i = 0; i < alphaLen; i++)
     {
         buffer[j++] = alphabet[i];
         buffer[j++] = '\n';
     }
 
-    //write(STDOUT_FILENO, buffer, buflen);
+    write(STDOUT_FILENO, buffer, buflen);
 
     for (int len = 2; len <= maxlen; len++)
     {
@@ -51,7 +51,7 @@ static void generate(int maxlen)
             }
         }
 
-        //write(STDOUT_FILENO, buffer, bufLen);
+        write(STDOUT_FILENO, buffer, bufLen);
 
         if (len == 2)
             continue;
@@ -73,7 +73,7 @@ static void generate(int maxlen)
 
             if (letters[i] != 0)
             {
-                //write(STDOUT_FILENO, buffer, bufLen);
+                write(STDOUT_FILENO, buffer, bufLen);
                 i = len - 3;
                 continue;
             }

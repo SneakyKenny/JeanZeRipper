@@ -5,7 +5,7 @@
 #include "../../../vertebarbe/dictionaries.h"
 
 static const char alphabet[] =
-"abcdefghijklmnopqrstuvwxyz";
+"abcdefghijklmnopqrstuvwxyz0123456789";
 //"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 //"0123456789";
 

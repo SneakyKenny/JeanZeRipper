@@ -3,7 +3,7 @@
 int main(int argc, char **argv)
 {
 	if (argc != 2)
-		errx(1, "Usage: ./%s str", argv[0]);
+		errx(1, "Usage: %s str", argv[0]);
 
 	char *src = argv[1];
 	char *md5 = make_md5(src);

@@ -2,12 +2,12 @@
 # include <string.h>
 # include <err.h>
 
-# include <openssl/conf.h>
-# include <openssl/evp.h>
-# include <openssl/err.h>
+# include "openssl/conf.h"
+# include "openssl/evp.h"
+# include "openssl/err.h"
 
-# include <openssl/md5.h>
-# include <openssl/sha.h>
+# include "openssl/md5.h"
+# include "openssl/sha.h"
 
 # ifndef HASH_H
 # define HASH_H

@@ -20,7 +20,7 @@ int firstSmaller(const char *targetPath, const char *dictPath)
 
 }
 */
-
+int NUM_THREADS = 8;
 
 int is_same(char *target, char *hash, unsigned char len, unsigned char hashLen) //len is the max char we want to check. close to zero => false positives
 {
@@ -41,16 +41,18 @@ void hash_and_compare(struct DData targets, struct DData dico, size_t buffLen, v
 	char *dMap = dico.map;
 	size_t nbTargets = tLen / (hashLen + 1); // + \n
 
-	#pragma omp parallel num_threads(4)
+	#pragma omp parallel num_threads(NUM_THREADS)
 	{
 		int tid = omp_get_thread_num();
-		off_t chunk = dLen / 4;
+		off_t chunk = dLen / NUM_THREADS;
 		char *toHash = malloc(buffLen);
 		char *hashed = malloc(hashLen + 1); //length of an md5 hash is 32B
 		hashed[hashLen] = 0; // we use strlen
 		off_t prev = tid * chunk; //offset of the previous line in dico
 		off_t end = (tid + 1) * chunk; //we stop at the begining of the next thread
 		off_t j = prev;
+
+		printf("Thread %d started working from %ld to %ld\n", omp_get_thread_num(), j, end);
 
 		while (j < dLen && j < end && nbTargets > 0)
 		{
@@ -73,6 +75,7 @@ void hash_and_compare(struct DData targets, struct DData dico, size_t buffLen, v
 				k++;
 			}
 		}
+		printf("Thread %d finished working\n", omp_get_thread_num());
 		free(toHash);
 		free(hashed);
 	}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html>
+    <head lang="fr">
+        <meta charset="utf-8">
+        <title>JeanTheRipper</title>
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Laila|Roboto+Condensed|Lato|Oswald|Anton|Lobster" rel="stylesheet">
+        
+    </head>
+    
+    <body id="debut" style="background-color: #FFF9FF">
+        <!-- 
+        Tag body is the content of the page
+        
+        Tag p allow paragraph
+        
+        Tag h + number make title with different size
+
+        Tag br = line break
+
+        Tag a = a line with a redirection to an url with the code href="..." 
+        If we want to redirect in another tab, just add the attribute target="_blank"
+        If we want to redirect to a section on the same page, just add the attribute target="#section ..."
+
+        Tag section = create a new section with a paragraph and its title
+        
+        Tag img = just add the attribute src ="path". If we want to add a comment on this photo add the attribute alt="comment"
+
+        Tag li = list
+        
+        Tag ol/ul = make an order in a list
+
+        Attribute css style = can modify color/size/font
+
+        Tag strong = make a word in bold
+
+        Tag div = make lots of parts on the page
+
+
+        -->
+        
+        <header>
+            <div style="background-color: rgba(255,100,0,1); height: 130px">
+            <br>
+            <h1 style="color: rgb(240, 240, 240);text-align: center;font-size: 38px;font-family: 'Anton', sans-serif;">JeanTheRipper</h1>
+            </div>
+        </header>
+        
+        <nav id="navbar">
+            <ul>
+                <li class="menu-html"><a id="a1" href="index.html">Accueil</a></li>
+                <li class="menu-JTR"><a href="JonhTheRipper.html">John The Ripper</a></li>
+                <li class="menu-Hash"><a id="a1" href="Hashcat.html"  style="background-color: rgba(0,0,0,0.4)">Hashcat</a></li>
+                <li class="menu-Pré"><a href="Projet.html">T&eacute;l&eacute;chargement</a></li>
+                <li1><a id="a1" href="ENG/home.html">ENG</a></li1>
+                <li1 class="menu-co"><a id="a1" href="Connexion.html">Connexion</a></li1>
+            </ul>
+        </nav>
+        
+        <br><br>
+        
+        <h1 style="text-align: center; margin-left: -300px; font-family: 'Lobster', cursive; text-decoration: underline">Hash...chat ?</h1>
+    
+        
+        <div class="grey">
+            <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+            
+            <p>Dans cette section, il s’agira de définir le hachage. Une fonction de hachage transforme une donnée en une autre sans possibilité de retrouver la donnée de départ. Il s’agit dont de crypter les données. Le principe d’une fonction de hachage est que la transformation de la donnée est rapide, unique pour chaque entrée.
+            <br><br>
+            En réalité, créer une fonction de hachage parfaite est impossible : la plupart du temps, les fonctions de hachage peuvent engendrer des collisions. Les fonctions de hachage modernes utilisent des opérations telles que des additions, des rotations, ou des opérations booléennes telles que XOR, OR, ou NOT. Ces opérations sont réalisées sur les bits de la donnée à crypter, et donc faciles et rapides à appliquer. Les fonctions de hachage les plus populaires sont les suivantes :
+            </p>
+            
+            <ul>
+                <li>md5</li>
+                <p>Elle fonctionne selon un schéma assez simple, tout d’abord, on ajoute au début de la donnée à crypter afin d’avoir une longueur multiple d’un certain nombre (512bits), puis on applique le même processus à chaque bloc de 512bits de longueur, qu’on découpe en sous-blocs de 32 octets. On applique des fonctions à chacun de ces blocs, on les ajoute, les concatène, et voilà notre donnée de sortie. 
+                <br><br>
+                Bien que cette fonction soit rapide à utiliser, il est très compliqué d’obtenir la donnée d’entrée en utilisant la force brute ; c’est le principe de Kerckhoffs. Cependant, cette fonction ayant été créée il y a un certain temps, il existe de nombreux sites permettant de trouver les possibles textes ayant servi à générer un hash. Il s’agit d’une des limitations de cette méthode. Elle est donc aujourd’hui de moins en moins utilisée.</p>
+                
+                <li>sha-1</li>
+                <p>La fonction sha-1 est considérée comme la deuxième plus utilisée, mais elle a récemment été déconseillée à cause de sa faible robustesse face à de grosses ressources.</p>
+                
+                <li>sha-256</li>
+                <p>La fonction sha-256 est-elle considérée comme robuste et efficace et est probablement la préférée aujourd’hui.</p>
+            </ul>
+            
+            <a id="cRetour" class="cInvisible" href="#debut"></a>
+            
+            <br>
+            
+            <p>Nous comptons donc utiliser ces trois fonctions car ce sont les plus utilisées aujourd’hui dans les bases de données de mots de passe. Il en existe des centaines d’autres mais qui ne sont utilisées que dans des cas spécifiques (gestionnaires de mots de passe, mots de passe windows/linux etc) que nous ne comptons pas supporter en priorité.</p>
+            
+        </div>
+        
+        
+        <script>
+                document.addEventListener('DOMContentLoaded', function()
+                {
+                    window.onscroll = function(ev) 
+                    {
+                        document.getElementById("cRetour").className = (window.pageYOffset > 100) ? "cVisible" : "cInvisible";
+                    };
+                });
+        </script>
+        
+        <footer>
+            <div class="footer-menu">
+                <ul>
+                    <li><a href="Blog.html">Blog</a></li>
+                    <li><a href="Liens.html">Liens utiles</a></li>
+                    <li><a href="Pr%C3%A9sentations.html">A propos de nous</a></li>
+                    <li><a href="Contacts.html">Nous contacter</a></li>
+                </ul>
+                <center style="text-align: center; font-family: 'Roboto', sans-serif;; color:#FFF9FF; font-size: 13px; margin-left: 4.3%">SupA1+1&emsp;|&emsp;2019</center>
+            </div>
+        </footer>
+        
+    </body>
+        
+        
+</html>

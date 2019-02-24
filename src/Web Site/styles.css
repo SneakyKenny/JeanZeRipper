@@ -3,11 +3,17 @@
 /* the shapping of text */
 body
 {
+    text-align: justify;
     width: 100%;
-    font-family: serif;
+    font-family: 'Oswald', sans-serif;
     margin: 0px;
     padding: 0px;
     background-color: rgb(240, 240, 240);
+}
+
+p
+{
+    text-indent: 15px;
 }
 
 /* allow the background color and the broder of a paragraph */
@@ -18,7 +24,7 @@ body
     height: auto;
     padding: 50px;
     margin: auto;
-    text-align: center;
+    text-align: justify;
     margin-bottom: 200px;
     border-style: solid;
     border width: 5px;
@@ -32,7 +38,7 @@ nav a
     color: rgb(240, 240, 240);
     text-align: center;
     font-size: 18px;
-    font-family: serif;
+    font-family: 'Lato', sans-serif;
     display: inline-table;
     text-decoration: none;
     padding: 13px 0px;
@@ -44,7 +50,7 @@ nav #a1
     color: rgb(240, 240, 240);
     text-align: center;
     font-size: 18px;
-    font-family: serif;
+    font-family: 'Lato', sans-serif;
     display: inline-table;
     text-decoration: none;
     padding: 13px 0px;
@@ -94,10 +100,13 @@ nav li1
 
 .footer-menu
 {
+    clear: both;
+    position: relative;
+    height: 80px;
+    margin-top: -40px;
     width: 100%;
-    height: 90px;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 40px;
     background-color: rgba(0,0,0,0.8);
 }
 
@@ -111,13 +120,13 @@ nav li1
 .footer-menu ul li
 {
     display: inline-block;
-    margin: 20px;
+    margin: 13px 20px;
 }
 
 .footer-menu ul li a
 {
-    font-family: serif;
-    font-size: 15px;
+    font-family: 'Laila', sans-serif;
+    font-size: 15ox;
     font-weight: 600;
     color: burlywood;
     text-transform: uppercase;

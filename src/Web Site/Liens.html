@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <title>JeanTheRipper</title>
         <link rel="stylesheet" href="liens.css">
-        <link href="https://fonts.googleapis.com/css?family=Advent+Pro|Lobster|Roboto+Condensed|Trocchi" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Laila|Roboto+Condensed|Lato|Oswald|Anton|Lobster" rel="stylesheet">
         
     </head>
     
@@ -14,15 +14,15 @@
         <header>
             <div style="background-color: rgba(255,100,0,1); height: 130px">
             <br>
-            <h1 style="color: rgb(240, 240, 240);text-align: center;font-size: 38px;font-family:fantasy">JeanTheRipper</h1>
+            <h1 style="color: rgb(240, 240, 240);text-align: center;font-size: 38px;font-family: 'Anton', sans-serif;">JeanTheRipper</h1>
             </div>
-        </header>    
+        </header>   
         
         <nav id="navbar">
             <ul>
                 <li class="menu-html"><a id="a1" href="index.html">Accueil</a></li>
                 <li class="menu-JTR"><a href="JonhTheRipper.html">John The Ripper</a></li>
-                <li class="menu-Hash"><a id="a1" href="Hashcat.html">Hashacat</a></li>
+                <li class="menu-Hash"><a id="a1" href="Hashcat.html">Hashcat</a></li>
                 <li class="menu-Pré"><a href="Projet.html">T&eacute;l&eacute;chargement</a></li>
                 <li1><a id="a1" href="ENG/home.html">ENG</a></li1>
                 <li1 class="menu-co"><a id="a1" href="Connexion.html">Connexion</a></li1>
@@ -31,31 +31,89 @@
         
         <br><br>
     
-        <h1 style="text-align: left; margin-left: 300px; text-decoration: underline; font-family: 'Lobster', serif; font-size: 50px"> 
+        <h1 style="text-align: left; margin-left: 300px; text-decoration: underline; font-family: 'Lobster', cursive; font-size: 50px"> 
              Liens utiles :</h1>    
         
         <br>
         
-        <p style="margin-left: 300px; width: 60%">Vous trouverez ci-dessous les liens des logiciels/services sur lesquels nous nous sommes appuyés pour réaliser notre projet : </p>
+        <p style="margin-left: 300px; width: 60%; font-size: 1.1em">Vous trouverez ci-dessous les liens des logiciels/services sur lesquels nous nous sommes appuyés pour réaliser notre projet : </p>
         
         <br>
         
-        <a style="margin-left:300px" href="https://github.com/explore" target="_blank"><img src="Images/liens/github.png" alt="logo Github"></a>
+        <section>
+            <a class="post-image-left" href="https://github.com/explore" target="_blank">
+                <img src="Images/liens/github.png" alt="logo Github">
+                <div class="overlay">
+                    <div class="text">Permet le partage des travaux de chacun.</div>
+                </div>
+            </a>
+            
+            <a class="post-image-right" href="http://brackets.io/" target="_blank">
+                <img src="Images/liens/Brackets.png" alt="logo Brackets">
+                <div class="overlay">
+                    <div class="text">Loiciel pour coder le site web.</div>
+                </div>
+            </a>
+        </section>
         
-        <br><br><br>
+        <section>
+            <a class="post-image-left" href="https://fonts.google.com/" target="_blank">
+                <img src="Images/liens/Google_fonts.png" alt="logo Google Fonts">
+                <div class="overlay">
+                    <div class="text">Site de polices d'écriture pour le site.</div>
+                </div>
+            </a> 
+            <a class="post-image-right" href="https://www.overleaf.com/" target="_blank">
+                <img src="Images/liens/LaTeX.png" alt="logo Latex">
+                <div class="overlay">
+                    <div class="text">Site sur lequel on rédige nos rapports de soutenance.</div>
+                </div>
+            </a>
+        </section>
         
-        <a style="margin-left:300px" href="https://www.overleaf.com/" target="_blank"><img src="Images/liens/LaTeX.png" alt="logo Latex"></a>  
+        <section>
+            <a class="post-image-left" href="https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Accueil_principal" target="_blank">
+                <img src="Images/liens/Wikipedia.jpg" alt="logo Wikipedia">
+                <div class="overlay">
+                    <div class="text">Site d'informations.</div>
+                </div>
+            </a>
+            <a class="post-image-right" href="https://openclassrooms.com/fr/" target="_blank">
+                <img src="Images/liens/OC.png" alt="logo OpenClassroom">
+                <div class="overlay">
+                    <div class="text">Forum et cours pour apprendre à programmer.</div>
+                </div>
+            </a> 
+        </section>
         
-        <br><br>
-        
+        <section>
+            <a class="post-image-center" href="https://stackoverflow.com/" target="_blank">
+                <img src="Images/liens/Stack_Overflow.png" alt="logo StackOverflow">
+                <div class="overlay">
+                    <div class="text" style="font-size: 15px">Forum ayant résolu nos problèmes.</div>
+                </div>
+            </a>
+            <a id="cRetour" class="cInvisible" href="#debut"></a>
+        </section>
+            
         <script>
-                document.addEventListener('DOMContentLoaded', function()
+            document.addEventListener('DOMContentLoaded', function()
+            {
+                window.onscroll = function(ev) 
                 {
-                    window.onscroll = function(ev) 
-                    {
-                        document.getElementById("cRetour").className = (window.pageYOffset > 100) ? "cVisible" : "cInvisible";
-                    };
-                });
+                    document.getElementById("cRetour").className = (window.pageYOffset > 100) ? "cVisible" : "cInvisible";
+                };
+            });
+                
+            function showText(text)
+            {
+                document.getElementById("text").innerHTML=text;
+            }
+
+            function hide()
+            {
+                document.getElementById("text").innerHTML="";
+            }
         </script>
         
         <footer>
@@ -63,9 +121,10 @@
                 <ul>
                     <li><a href="Blog.html">Blog</a></li>
                     <li><b href="Liens.html">Liens utiles</b></li>
-                    <li><a href="Pr%C3%A9sentations.html">&Agrave; propos de nous</a></li>
+                    <li><a href="Pr%C3%A9sentations.html">A propos de nous</a></li>
                     <li><a href="Contacts.html">Nous contacter</a></li>
                 </ul>
+                <center style="text-align: center; font-family: arial; color:#FFF9FF; font-size: 13px; margin-left: 4.3%">SupA1+1&emsp;|&emsp;2019</center>
             </div>
         </footer>
         

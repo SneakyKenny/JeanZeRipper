@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+    <head lang="fr">
+        <meta charset="utf-8">
+        <title>JeanTheRipper</title>
+        <link rel="stylesheet" href="liens.css">
+        <link href="https://fonts.googleapis.com/css?family=Laila|Roboto+Condensed|Lato|Oswald|Anton|Lobster" rel="stylesheet">
+        
+    </head>
+    
+    <body id="debut" style="background-color: #FFF9FF; text-align: justify">
+        
+        <header>
+            <div style="background-color: rgba(255,100,0,1); height: 130px">
+            <br>
+            <h1 style="color: rgb(240, 240, 240);text-align: center;font-size: 38px;font-family: 'Anton', sans-serif;">JeanTheRipper</h1>
+            </div>
+        </header>   
+        
+        <nav id="navbar">
+            <ul>
+                <li class="menu-html"><a id="a1" href="index.html">Accueil</a></li>
+                <li class="menu-JTR"><a href="JonhTheRipper.html">John The Ripper</a></li>
+                <li class="menu-Hash"><a id="a1" href="Hashcat.html">Hashcat</a></li>
+                <li class="menu-Pré"><a href="Projet.html">T&eacute;l&eacute;chargement</a></li>
+                <li1><a id="a1" href="ENG/home.html">ENG</a></li1>
+                <li1 class="menu-co"><a id="a1" href="Connexion.html">Connexion</a></li1>
+            </ul>
+        </nav>
+        
+        <br><br>
+    
+        <h1 style="text-align: left; margin-left: 300px; text-decoration: underline; font-family: 'Lobster', cursive; font-size: 50px"> 
+             Qui sommes-nous ?</h1>    
+        
+        <br>
+        
+        <h1 style="margin-left: 300px">Simon Guiot (Chef de groupe)</h1>
+        <p style="color: #666; font-size: 1em; text-decoration: none; text-align: left; margin-left: 300px">@Barbe_verte</p>
+        <p style="margin-left: 300px; width: 60%; font-size: 1.1em">En tant que chef de projet, j’ai proposé de travailler sur le cassage de mots de passe car cela me semble être une bonne façon de commencer à travailler dans le domaine de la sécurité informatique, tout en nous permettant d’utiliser et d’approfondir nos connaissances en algorithmique et en programmation.
+        </p>        
+        
+        <h1 style="margin-left: 300px">Louis Guo</h1>
+        <p style="margin-left: 300px; width: 60%; font-size: 1.1em">Ce deuxième projet dont le thème est libre, suscite une réelle envie pour moi de coder puisque nous allons nous intéresser au cassage de mot de passe, qui jusqu’à présent faisait partie d’un univers complètement inconnu étant donné que je suis arrivé de prépa classique cette année. Je débute encore dans le domaine de l’informatique et j’ai beaucoup à apprendre auprès de mes camarades. Je suis persuadé que ce projet sera incroyablement enrichissant et je m’impatiente de voir ce à quoi nous allons aboutir.</p>
+        
+        <h1 style="margin-left: 300px">Marile Lin</h1>
+        <p style="color: #666; font-size: 1em; text-decoration: none; text-align: left; margin-left: 300px;">@Low_battery</p>
+        <p style="margin-left: 300px; width: 60%; font-size: 1.1em">J’aime particulièrement l’idée de ce projet dû à au principe de celui-ci. L’aide qu’il fournit pour retrouver un mot de passe perdu me serait, je suis persuadée, constamment utile. Je sais d’avance que ce projet m’apportera beaucoup en autonomie, en organisation ainsi qu’une amélioration de mes connaissances du langage informatique C99 et voire même d’en apprendre plus. Ce projet sera une véritable source d’expériences ainsi qu’une aide certaine pour mes futures années d’études.
+        </p>
+        
+        <h1 style="margin-left: 300px">Kenny Lorin</h1>
+        <p style="color: #666; font-size: 1em; text-decoration: none; text-align: left; margin-left: 300px;">@Purple</p>
+        <p style="margin-left: 300px; width: 60%; font-size: 1.1em">Grand amateur d’informatique depuis mon plus jeune âge, je suis actuellement en SPE à l’Epita dans le but de devenir un professionnel du milieu, d’avoir de bonnes connaissances et de pouvoir résoudre tous les problèmes qui se poseront à moi. Suite à de très sérieux problèmes de santé, j’ai énormément perdu en rythme de travail, mais je fais de mon mieux pour égaler voire dépasser mes camarades avec qui je veux aller jusqu’au bout de ce projet.
+        <br><br>
+        Le domaine de la sécurité informatique est un domaine tellement vaste, mais aussi tellement concret. Je m’y intéresse de plus en plus depuis peu de temps, ayant participé à quelques "CTF" (Capture the Flag). Il m’est arrivé d’avoir à craquer des mots de passe, que ce soit avec une attaque "brute-force", ou par dictionnaire. Je pense donc que créer mes propres outils afin de réaliser ces tâches pourrait être une expérience enrichissante et j’ai hâte de voir jusqu’où nous pourrons le mener.
+        </p>
+        
+        <br>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function()
+            {
+                window.onscroll = function(ev) 
+                {
+                    document.getElementById("cRetour").className = (window.pageYOffset > 100) ? "cVisible" : "cInvisible";
+                };
+            });
+                
+            function showText(text)
+            {
+                document.getElementById("text").innerHTML=text;
+            }
+
+            function hide()
+            {
+                document.getElementById("text").innerHTML="";
+            }
+        </script>
+        
+        <footer>
+            <div class="footer-menu">
+                <ul>
+                    <li><a href="Blog.html">Blog</a></li>
+                    <li><a href="Liens.html">Liens utiles</a></li>
+                    <li><b href="Pr%C3%A9sentations.html">A propos de nous</b></li>
+                    <li><a href="Contacts.html">Nous contacter</a></li>
+                </ul>
+                <center style="text-align: center; font-family: arial; color:#FFF9FF; font-size: 13px; margin-left: 4.3%">SupA1+1&emsp;|&emsp;2019</center>
+            </div>
+        </footer>
+        
+    </body>
+        
+        
+</html>

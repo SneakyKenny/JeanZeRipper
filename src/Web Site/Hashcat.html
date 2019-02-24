@@ -52,6 +52,7 @@
                 <li class="menu-html"><a id="a1" href="index.html">Accueil</a></li>
                 <li class="menu-JTR"><a href="JonhTheRipper.html">John The Ripper</a></li>
                 <li class="menu-Hash"><a id="a1" href="Hashcat.html"  style="background-color: rgba(0,0,0,0.4)">Hashcat</a></li>
+                <li class="menu-Para"><a id="a1" href="Parallelisme.html">Parall&eacute;lisme</a></li>
                 <li class="menu-Pré"><a href="Projet.html">T&eacute;l&eacute;chargement</a></li>
                 <li1><a id="a1" href="ENG/home.html">ENG</a></li1>
                 <li1 class="menu-co"><a id="a1" href="Connexion.html">Connexion</a></li1>
@@ -71,24 +72,30 @@
             En réalité, créer une fonction de hachage parfaite est impossible : la plupart du temps, les fonctions de hachage peuvent engendrer des collisions. Les fonctions de hachage modernes utilisent des opérations telles que des additions, des rotations, ou des opérations booléennes telles que XOR, OR, ou NOT. Ces opérations sont réalisées sur les bits de la donnée à crypter, et donc faciles et rapides à appliquer. Les fonctions de hachage les plus populaires sont les suivantes :
             </p>
             
+            <br>
+            
             <ul>
                 <li>md5</li>
                 <p>Elle fonctionne selon un schéma assez simple, tout d’abord, on ajoute au début de la donnée à crypter afin d’avoir une longueur multiple d’un certain nombre (512bits), puis on applique le même processus à chaque bloc de 512bits de longueur, qu’on découpe en sous-blocs de 32 octets. On applique des fonctions à chacun de ces blocs, on les ajoute, les concatène, et voilà notre donnée de sortie. 
                 <br><br>
                 Bien que cette fonction soit rapide à utiliser, il est très compliqué d’obtenir la donnée d’entrée en utilisant la force brute ; c’est le principe de Kerckhoffs. Cependant, cette fonction ayant été créée il y a un certain temps, il existe de nombreux sites permettant de trouver les possibles textes ayant servi à générer un hash. Il s’agit d’une des limitations de cette méthode. Elle est donc aujourd’hui de moins en moins utilisée.</p>
                 
+                <br>
+                
                 <li>sha-1</li>
                 <p>La fonction sha-1 est considérée comme la deuxième plus utilisée, mais elle a récemment été déconseillée à cause de sa faible robustesse face à de grosses ressources.</p>
+                
+                <br>
                 
                 <li>sha-256</li>
                 <p>La fonction sha-256 est-elle considérée comme robuste et efficace et est probablement la préférée aujourd’hui.</p>
             </ul>
             
-            <a id="cRetour" class="cInvisible" href="#debut"></a>
-            
             <br>
             
             <p>Nous comptons donc utiliser ces trois fonctions car ce sont les plus utilisées aujourd’hui dans les bases de données de mots de passe. Il en existe des centaines d’autres mais qui ne sont utilisées que dans des cas spécifiques (gestionnaires de mots de passe, mots de passe windows/linux etc) que nous ne comptons pas supporter en priorité.</p>
+            
+            <a id="cRetour" class="cInvisible" href="#debut"></a>
             
         </div>
         

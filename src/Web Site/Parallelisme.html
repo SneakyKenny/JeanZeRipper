@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+    <head lang="fr">
+        <meta charset="utf-8">
+        <title>JeanTheRipper</title>
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Laila|Roboto+Condensed|Lato|Oswald|Anton|Lobster" rel="stylesheet">
+        
+    </head>
+    
+    <body id="debut" style="background-color: #FFF9FF">
+        
+        <header>
+            <div style="background-color: rgba(255,100,0,1); height: 130px">
+            <br>
+            <h1 style="color: rgb(240, 240, 240);text-align: center;font-size: 38px;font-family: 'Anton', sans-serif;">JeanTheRipper</h1>
+            </div>
+        </header>
+        
+        <nav id="navbar">
+            <ul>
+                <li class="menu-html"><a id="a1" href="index.html">Accueil</a></li>
+                <li class="menu-JTR"><a href="JonhTheRipper.html">John The Ripper</a></li>
+                <li class="menu-Hash"><a id="a1" href="Hashcat.html">Hashcat</a></li>
+                <li class="menu-Para"><a id="a1" href="Parallelisme.html" style="background-color: rgba(0,0,0,0.4)">Parall&eacute;lisme</a></li>
+                <li class="menu-Pré"><a href="Projet.html">T&eacute;l&eacute;chargement</a></li>
+                <li1><a id="a1" href="ENG/home.html">ENG</a></li1>
+                <li1 class="menu-co"><a id="a1" href="Connexion.html">Connexion</a></li1>
+            </ul>
+        </nav>
+        
+        <br><br>
+        
+        <h1 style="text-align: center; margin-left: -300px; font-family: 'Lobster', cursive; text-decoration: underline">Explications :</h1>
+    
+        
+        <div class="grey">
+            <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+            
+            <p>Avec le parallélisme, notamment le multithreading, nous pouvons distribuer la charge de travail sur plusieurs cœurs ou processeurs. Cela permet de grandement diviser le temps d'exécution de certains programmes :</p>
+            
+            <p>Si l'on parvient à utiliser par exemple quatre processeurs en même temps au lieu d'un seul, on peut pratiquement diviser le temps d'exécution par quatre. Ceci est très efficace pour les calculs à répétition pendant de longues durées, et donc au cassage de mots de passe (qualifié également de "Embarrassingly parallel problem").</p>
+                
+            <p>Néanmoins, le multithreading demande un agencement du code particulier dès le début.</p>
+            
+            <p>Il existe plusieurs bibliothèques pour le multithreading. Nous nous concentrerons sur OpenMP et les threads POSIX. OpenMP est plutôt simple d'utilisation, puisqu’elle permet d'utiliser facilement les threads POSIX. Nous l'utiliserons donc au début pour avoir un code fonctionnel, puis nous essaierons de n'utiliser que les threads POSIX afin d'en apprendre un peu plus sur le multithreading. Il existe probablement d'autres bibliothèques permettant de faire du parallélisme, mais de cette façon nous pouvons utiliser les bibliothèques déjà présentes.</p>
+            
+            <p>La simplicité d'OpenMP permet en quelques lignes pour quatre coeurs de faire un quart des itérations d'une boucle for par coeur, alors que sans OpenMP il faut, par exemple, d'abord chercher le nombre de processeurs afin de créer le nombre de threads adéquat, puis créer manuellement les threads et manipuler les données plus difficilement.</p>
+            
+            <a id="cRetour" class="cInvisible" href="#debut"></a>
+            
+        </div>
+        
+        
+        <script>
+                document.addEventListener('DOMContentLoaded', function()
+                {
+                    window.onscroll = function(ev) 
+                    {
+                        document.getElementById("cRetour").className = (window.pageYOffset > 100) ? "cVisible" : "cInvisible";
+                    };
+                });
+        </script>
+        
+        <footer>
+            <div class="footer-menu">
+                <ul>
+                    <li><a href="Blog.html">Blog</a></li>
+                    <li><a href="Liens.html">Liens utiles</a></li>
+                    <li><a href="Pr%C3%A9sentations.html">A propos de nous</a></li>
+                    <li><a href="Contacts.html">Nous contacter</a></li>
+                </ul>
+                <center style="text-align: center; font-family: 'Roboto', sans-serif;; color:#FFF9FF; font-size: 13px; margin-left: 4.3%">SupA1+1&emsp;|&emsp;2019</center>
+            </div>
+        </footer>
+        
+    </body>
+        
+        
+</html>

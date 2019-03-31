@@ -72,7 +72,7 @@ void hash_and_compare(struct DData targets, struct DData dico, size_t buffLen, v
 					printf("%s:%s\n", hashed, toHash);
 					nbTargets--;
 				}
-				k++;
+				k++; //to skip the '\n'
 			}
 		}
 		printf("Thread %d finished working\n", omp_get_thread_num());
@@ -87,25 +87,28 @@ void get_targets(const char *targetPath, struct DData *data)
 	if (stat(targetPath, &targetSt) == -1)
 		errx(EXIT_FAILURE, "stat()");
 
-	int targetsFd = open(targetPath, O_RDONLY);
+	FILE *targetsFd = fopen(targetPath, "rb");
 
-	char *mTargets;
+	char *mTargets = malloc(targetSt.st_size + 1);
 	//size_t len=0;
 	//ssize_t temp;
 	//struct htab *table = htab_new();
 
 
-	if (targetsFd == -1)
+	if (targetsFd == NULL)
 		errx(EXIT_FAILURE, "File not found");
 
-	mTargets = mmap(NULL, targetSt.st_size, PROT_READ, MAP_SHARED, targetsFd, 0);
+	/*mTargets = mmap(NULL, targetSt.st_size, PROT_READ, MAP_SHARED, targetsFd, 0);
 
 	if (mTargets == MAP_FAILED)
 		errx(EXIT_FAILURE, "Could not map file to memory");
+	*/
+
+	fread(mTargets, 1, targetSt.st_size, targetsFd);
 
 	data->St = targetSt;
 	data->map = mTargets;
-	close(targetsFd);
+	fclose(targetsFd);
 }
 
 struct DData get_data(const char *path)
@@ -129,7 +132,8 @@ void dict_attack(const char *targetPath, const char *dictPath, struct BData info
 
 	hash_and_compare(targets, dico, 4096, infos.hash_func, infos.maxCheck, infos.hashLen);
 
-
-	munmap(targets.map, targets.St.st_size);
-	munmap(dico.map, dico.St.st_size);
+	free(targets.map);
+	free(dico.map);
+	//munmap(targets.map, targets.St.st_size);
+	//munmap(dico.map, dico.St.st_size);
 }

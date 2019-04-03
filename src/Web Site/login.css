@@ -1,6 +1,6 @@
-/* this file allow some dynamics effects on the web site */
+/* this file allow some dynamics effects on the web site there : connexion.html and login.html */
 
-/* the shapping of text */
+/* the shapping of the page */
 body
 {
     text-align: justify;
@@ -11,26 +11,52 @@ body
     background-color: rgb(240, 240, 240);
 }
 
-p
+.box
 {
-    text-indent: 15px;
-}
-
-/* allow the background color and the broder of a paragraph */
-.grey
-{
+    width: 300px;
+    padding:20px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: rgba(180,0,0, 0.05);
-    width: 580px;
-    height: auto;
-    padding: 50px;
-    margin: auto;
-    text-align: justify;
-    margin-bottom: 200px;
     border-style: solid;
     border width: 5px;
     border-color: darkgrey;
+    text-align: center;
 }
 
+.box input[type="text"], .box input[type="password"]
+{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid rgba(180,160,180, 0.3);
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: black;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+.box input[type="submit"]
+{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid darkgrey;
+    padding: 14px 40px;
+    outline: none;
+    color: black;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
 
 /* menu of top */
 nav a
@@ -98,23 +124,18 @@ nav li1
 
 /* menu of bottom (footer) */
 
-#fixed-footer
-{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    overflow: hidden;
-}
-
 .footer-menu
 {
     clear: both;
-    position: relative;
+    position: absolute;
     height: 80px;
     margin-top: -40px;
     width: 100%;
     margin: auto;
     margin-top: 40px;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
     background-color: rgba(0,0,0,0.8);
 }
 
@@ -138,48 +159,4 @@ nav li1
     font-weight: 600;
     color: burlywood;
     text-transform: uppercase;
-}
-
-/* anchor button which allows to go back on top  */
-
-a#cRetour
-{
-    border-radius:12px;
-    padding:10px;
-    font-size:15px;
-    text-align:center;
-    color:#fff;
-    background:rgba(0, 0, 0, 0.3);
-    position:fixed;
-    right:90px;
-    opacity:1;
-    z-index:99999;
-    transition:all ease-in 0.3s;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    text-decoration: none;
-}
-
-a#cRetour:before
-{ 
-    content: "\25b2"; 
-}
-
-a#cRetour:hover
-{
-    background:rgba(0, 0, 0, 1);
-    transition:all ease-in 0.3s;
-}
-
-a#cRetour.cInvisible
-{
-    bottom:-30px;
-    opacity:0;
-    transition:all ease-in 0.5s;
-}
-
-a#cRetour.cVisible
-{
-    bottom:100px;
-    opacity:1;
 }

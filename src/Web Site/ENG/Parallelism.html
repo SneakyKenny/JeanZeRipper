@@ -23,30 +23,35 @@
                 <li class="menu-html"><a id="a1" href="index.html">Home</a></li>
                 <li class="menu-JTR"><a href="JonhTheRipper.html">John The Ripper</a></li>
                 <li class="menu-Hash"><a id="a1" href="Hashcat.html">Hashcat</a></li>
-                <li class="menu-Para"><a id="a1" href="Parallelism.html">Parallelism</a></li>
-                <li class="menu-Pré"><a href="Project.html" style="background-color: rgba(0,0,0,0.4)">Download</a></li>
-                <li1><a id="a1" href="../Projet.html">FR</a></li1>
+                <li class="menu-Para"><a id="a1" href="Parallelism.html" style="background-color: rgba(0,0,0,0.4)">Parallelism</a></li>
+                <li class="menu-Pré"><a href="Project.html">Download</a></li>
+                <li1><a id="a1" href="../Parallelisme.html">FR</a></li1>
                 <li1 class="menu-co"><a id="a1" href="Signup.html">Sign up</a></li1>
             </ul>
         </nav>
         
         <br><br>
         
-        <p style="margin-left: 300px; width: 60%; font-size: 1.1em">In this part of the site you will find the download links for all the documents needed for the project as well as the project itself.</p>
+        <h1 style="text-align: center; margin-left: -300px; font-family: 'Lobster', cursive; text-decoration: underline">Explanations:</h1>
+    
         
-        <h1 style="margin-left: 300px">Specifications:</h1>
-        
-        <br>
-        
-        <div style="margin-left: 300px; width: 60%; font-size: 1.5em">
-            <a href="https://mega.nz/#!TqxE1YRB!klUVBEtzXNFmzx0w1A9Lg2l_1OLcdLXS2rA6z92Iae4" target="_blank">Specifications!</a>
+        <div class="grey">
+            <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+            
+            <p>With parallelism, especially multithreading, we can distribute the workload across multiple cores or processors. This greatly divides the execution time of some programs:</p>
+            
+            <p>If you can use four processors at the same time instead of just one, you can essentially divide the execution time by four. This is very effective for recurring calculations over long periods of time, and thus breaking passwords (also referred to as "Embarrassingly parallel problem").</p>
+                
+            <p>Nevertheless, multithreading requires a particular code layout from the beginning.</p>
+            
+            <p>There are several libraries for multithreading. We will focus on OpenMP and POSIX threads. OpenMP is quite easy to use, since it makes it easy to use POSIX threads. We will use it at the beginning to have a functional code, then we will try to use only POSIX threads to learn more about multithreading. There are probably other libraries for parallelism, but in this way we can use existing libraries.</p>
+            
+            <p>The simplicity of OpenMP allows in a few lines for four cores to make a quarter of the iterations of a for-heart loop, whereas without OpenMP it is necessary, for example, first to look for the number of processors in order to create the number of adequate threads, then manually create the threads and manipulate the data more difficult.</p>
+            
+            <a id="cRetour" class="cInvisible" href="#debut"></a>
+            
         </div>
         
-        <br>
-        
-        <h1 style="margin-left: 300px">The defense reports:</h1>
-        
-        <h1 style="margin-left: 300px">The project:</h1>
         
         <script>
                 document.addEventListener('DOMContentLoaded', function()
@@ -73,5 +78,4 @@
     </body>
         
         
-</html>
 </html>

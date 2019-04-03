@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+    <head lang="fr">
+        <meta charset="utf-8">
+        <title>JeanTheRipper</title>
+        <link rel="stylesheet" href="../styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Laila|Roboto+Condensed|Lato|Oswald|Anton|Lobster" rel="stylesheet">
+        
+    </head>
+    
+    <body id="debut" style="background-color: #FFF9FF">
+        
+        <header>
+            <div style="background-color: rgba(255,100,0,1); height: 130px">
+            <br>
+            <h1 style="color: rgb(240, 240, 240);text-align: center;font-size: 38px;font-family: 'Anton', sans-serif;">JeanTheRipper</h1>
+            </div>
+        </header>
+        
+        <nav id="navbar">
+            <ul>
+                <li class="menu-html"><a id="a1" href="index.html">Home</a></li>
+                <li class="menu-JTR"><a href="JonhTheRipper.html">John The Ripper</a></li>
+                <li class="menu-Hash"><a id="a1" href="Hashcat.html" style="background-color: rgba(0,0,0,0.4)">Hashcat</a></li>
+                <li class="menu-Para"><a id="a1" href="Parallelism.html">Parallelism</a></li>
+                <li class="menu-Pré"><a href="Project.html">Download</a></li>
+                <li1><a id="a1" href="../Hashcat.html">FR</a></li1>
+                <li1 class="menu-co"><a id="a1" href="Signup.html">Sign up</a></li1>
+            </ul>
+        </nav>
+        
+        <br><br>
+        
+        <h1 style="text-align: center; margin-left: -300px; font-family: 'Lobster', cursive; text-decoration: underline">Hash a cat?</h1>
+    
+        
+        <div class="grey">
+            <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+            
+            <p>In this section, it's about defining the hake. A transformation function transformed into another possibility to find the starting data. It's not about encrypting the data. The principle of data transformation is fast, unique for each input.
+            <br><br>
+            In fact, creating a perfect hash function is impossible: most of the time, hash functions can cause collisions. Modern hash functions use operations such as additions, rotations, or Boolean operations such as XOR, OR, or NOT. These operations are performed on the bits of the data to be encrypted, and therefore easy and quick to apply. The most popular hash functions are:
+            </p>
+            
+            <br>
+            
+            <ul>
+                <li>md5</li>
+                <p>It works in a rather simple scheme, first, we add at the beginning of the data to be encrypted to have a length multiple of a number (512 bits), then we apply the same process to each block of 512 bits of length, which is divided into sub-blocks of 32 bytes. We apply functions to each of these blocks, we add them, concatenate them, and here is our output data. 
+                <br><br>
+                Although this function is quick to use, it is very complicated to obtain input data using brute force; it is the principle of Kerckhoffs. However, since this function was created a while ago, there are many sites to find the possible texts used to generate a hash. This is one of the limitations of this method. It is therefore today less and less used.</p>
+                
+                <br>
+                
+                <li>sha-1</li>
+                <p>The sha-1 function is considered the second most used, but it was recently discouraged because of its low robustness against large resources.</p>
+                
+                <br>
+                
+                <li>sha-256</li>
+                <p>Is the sha-256 function considered robust and efficient and is probably the favorite today.</p>
+            </ul>
+            
+            <br>
+            
+            <p>We intend to use these three functions because they are the most used today in password databases. There are hundreds of others but they are only used in specific cases (password managers, windows / linux passwords etc.) that we do not intend to support in priority.</p>
+            
+            <a id="cRetour" class="cInvisible" href="#debut"></a>
+            
+        </div>
+        
+        
+        <script>
+                document.addEventListener('DOMContentLoaded', function()
+                {
+                    window.onscroll = function(ev) 
+                    {
+                        document.getElementById("cRetour").className = (window.pageYOffset > 100) ? "cVisible" : "cInvisible";
+                    };
+                });
+        </script>
+        
+        <footer>
+            <div class="footer-menu">
+                <ul>
+                    <li><a href="Blog.html">Blog</a></li>
+                    <li><a href="Links.html">Useful links</a></li>
+                    <li><a href="Presentations.html">About us</a></li>
+                    <li><a href="Contacts.html">Contact us</a></li>
+                </ul>
+                <center style="text-align: center; font-family: 'Roboto', sans-serif;; color:#FFF9FF; font-size: 13px; margin-left: 4.3%">SupA1+1&emsp;|&emsp;2019</center>
+            </div>
+        </footer>
+        
+    </body>
+        
+        
+</html>

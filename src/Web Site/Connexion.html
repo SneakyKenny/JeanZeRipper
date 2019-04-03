@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+    <head lang="fr">
+        <meta charset="utf-8">
+        <title>JeanTheRipper</title>
+        <link rel="stylesheet" href="login.css">
+        <link href="https://fonts.googleapis.com/css?family=Laila|Roboto+Condensed|Lato|Oswald|Anton|Lobster" rel="stylesheet">
+        
+    </head>
+    
+    <body style="background-color: #FFF9FF">
+        
+        <header>
+            <div style="background-color: rgba(255,100,0,1); height: 130px">
+            <br>
+            <h1 style="color: rgb(240, 240, 240);text-align: center;font-size: 38px;font-family: 'Anton', sans-serif;">JeanTheRipper</h1>
+            </div>
+        </header>
+        
+        <nav id="navbar">
+            <ul>
+                <li class="menu-html"><a id="a1" href="index.html">Accueil</a></li>
+                <li class="menu-JTR"><a href="JonhTheRipper.html">John The Ripper</a></li>
+                <li class="menu-Hash"><a id="a1" href="Hashcat.html">Hashcat</a></li>
+                <li class="menu-Para"><a id="a1" href="Parallelisme.html">Parall&eacute;lisme</a></li>
+                <li class="menu-Pré"><a href="Projet.html">T&eacute;l&eacute;chargement</a></li>
+                <li1><a id="a1" href="ENG/Signup.html">ENG</a></li1>
+                <li1 class="menu-co"><a id="a1" href="Connexion.html" style="background-color: rgba(0,0,0,0.4)">Connexion</a></li1>
+            </ul>
+        </nav>
+        
+        <br><br>
+        
+        <form class="box">
+            <h1 style="text-align: center; font-family: 'Lobster', cursive; text-decoration: underline; margin-bottom: 30px">Connexion :</h1>
+            <input type="text" name="" placeholder="Identifiant">
+            <input type="password" name="" placeholder="Mot de passe">
+            <input type="submit" name="" value="login">
+        </form>
+        
+        
+        <script>
+                document.addEventListener('DOMContentLoaded', function()
+                {
+                    window.onscroll = function(ev) 
+                    {
+                        document.getElementById("cRetour").className = (window.pageYOffset > 100) ? "cVisible" : "cInvisible";
+                    };
+                });
+        </script>
+        
+        <footer>
+            <div class="footer-menu" id="fixed-footer">
+                <ul>
+                    <li><a href="Blog.html">Blog</a></li>
+                    <li><a href="Liens.html">Liens utiles</a></li>
+                    <li><a href="Pr%C3%A9sentations.html">A propos de nous</a></li>
+                    <li><a href="Contacts.html">Nous contacter</a></li>
+                </ul>
+                <center style="text-align: center; font-family: 'Roboto', sans-serif;; color:#FFF9FF; font-size: 13px; margin-left: 4.3%">SupA1+1&emsp;|&emsp;2019</center>
+            </div>
+        </footer>
+        
+    </body>
+        
+        
+</html>

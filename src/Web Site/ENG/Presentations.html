@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+    <head lang="fr">
+        <meta charset="utf-8">
+        <title>JeanTheRipper</title>
+        <link rel="stylesheet" href="../liens.css">
+        <link href="https://fonts.googleapis.com/css?family=Laila|Roboto+Condensed|Lato|Oswald|Anton|Lobster" rel="stylesheet">
+        
+    </head>
+    
+    <body id="debut" style="background-color: #FFF9FF; text-align: justify">
+        
+        <header>
+            <div style="background-color: rgba(255,100,0,1); height: 130px">
+            <br>
+            <h1 style="color: rgb(240, 240, 240);text-align: center;font-size: 38px;font-family: 'Anton', sans-serif;">JeanTheRipper</h1>
+            </div>
+        </header>   
+        
+        <nav id="navbar">
+            <ul>
+                <li class="menu-html"><a id="a1" href="index.html">Home</a></li>
+                <li class="menu-JTR"><a href="JonhTheRipper.html">John The Ripper</a></li>
+                <li class="menu-Hash"><a id="a1" href="Hashcat.html">Hashcat</a></li>
+                <li class="menu-Para"><a id="a1" href="Parallelism.html">Parallelism</a></li>
+                <li class="menu-Pré"><a href="Project.html">Download</a></li>
+                <li1><a id="a1" href="../Pr%C3%A9sentations.html">FR</a></li1>
+                <li1 class="menu-co"><a id="a1" href="Signup.html">Sign up</a></li1>
+            </ul>
+        </nav>
+        
+        <br><br>
+    
+        <h1 style="text-align: left; margin-left: 300px; text-decoration: underline; font-family: 'Lobster', cursive; font-size: 50px"> 
+             Who are we?</h1>    
+        
+        <br>
+        
+        <h1 style="margin-left: 300px">Simon Guiot (Group leader)</h1>
+        <p style="color: #666; font-size: 1em; text-decoration: none; text-align: left; margin-left: 300px">@Barbe_verte</p>
+        <p style="margin-left: 300px; width: 60%; font-size: 1.1em">As a project manager, I proposed to work on password cracking because it seems like a good way to start working in the field of computer security, while allowing us to use and deepen our knowledge in algorithmic and programming.
+        </p>        
+        
+        <h1 style="margin-left: 300px">Louis Guo</h1>
+        <p style="margin-left: 300px; width: 60%; font-size: 1.1em">This second project whose theme is free, arouses a real desire for me to code since we will be interested in the breaking of password, which until now was part of a completely unknown universe since I arrived from prepa classic this year. I am still in the computer field and I have a lot to learn from my classmates. I am confident that this project will be incredibly rewarding and I am impatient to see what we will achieve.</p>
+        
+        <h1 style="margin-left: 300px">Marile Lin</h1>
+        <p style="color: #666; font-size: 1em; text-decoration: none; text-align: left; margin-left: 300px;">@Low_battery</p>
+        <p style="margin-left: 300px; width: 60%; font-size: 1.1em">I particularly like the idea of this project due to the principle of it. The help he provides to recover a lost password would be, I am sure, constantly useful. I know in advance that this project will bring me much autonomy, organization and an improvement of my knowledge of the C99 computer language and even to learn more. This project will be a real source of experiences and a sure help for my future years of study.
+        </p>
+        
+        <h1 style="margin-left: 300px">Kenny Lorin</h1>
+        <p style="color: #666; font-size: 1em; text-decoration: none; text-align: left; margin-left: 300px;">@Purple</p>
+        <p style="margin-left: 300px; width: 60%; font-size: 1.1em">I have been a computer enthusiast since I was young, and I am now in SPE at Epita in order to become a professional in the field, to have good knowledge and to be able to solve all the problems that will arise for me. Following very serious health problems, I lost a lot of work, but I try my best to match or even exceed my classmates with whom I want to go all the way.
+        <br><br>
+        The field of computer security is such a vast field, but also so concrete. I have been interested more and more recently, having participated in some "CTF" (Capture the Flag). I happened to have to crack passwords, whether with a "brute-force" attack, or by dictionary. So I think creating my own tools to do these things could be a rewarding experience and I can not wait to see how far we can go.
+        </p>
+        
+        <a id="cRetour" class="cInvisible" href="#debut"></a>
+        
+        <br>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function()
+            {
+                window.onscroll = function(ev) 
+                {
+                    document.getElementById("cRetour").className = (window.pageYOffset > 100) ? "cVisible" : "cInvisible";
+                };
+            });
+                
+            function showText(text)
+            {
+                document.getElementById("text").innerHTML=text;
+            }
+
+            function hide()
+            {
+                document.getElementById("text").innerHTML="";
+            }
+        </script>
+        
+        <footer>
+            <div class="footer-menu">
+                <ul>
+                    <li><a href="Blog.html">Blog</a></li>
+                    <li><a href="Links.html">Useful links</a></li>
+                    <li><b href="Presentations.html">About us</b></li>
+                    <li><a href="Contacts.html">Contact us</a></li>
+                </ul>
+                <center style="text-align: center; font-family: 'Roboto', sans-serif;; color:#FFF9FF; font-size: 13px; margin-left: 4.3%">SupA1+1&emsp;|&emsp;2019</center>
+            </div>
+        </footer>
+        
+    </body>
+        
+        
+</html>

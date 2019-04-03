@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html>
+    <head lang="fr">
+        <meta charset="utf-8">
+        <title>JeanTheRipper</title>
+        <link rel="stylesheet" href="../styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Laila|Roboto+Condensed|Lato|Oswald|Anton|Lobster" rel="stylesheet">
+        
+    </head>
+    
+    <body id="debut" style="background-color: #FFF9FF">
+        
+        <header>
+            <div style="background-color: rgba(255,100,0,1); height: 130px">
+            <br>
+            <h1 style="color: rgb(240, 240, 240);text-align: center;font-size: 38px;font-family: 'Anton', sans-serif;">JeanTheRipper</h1>
+            </div>
+        </header>
+        
+        <nav id="navbar">
+            <ul>
+                <li class="menu-html"><a id="a1" href="index.html">Home</a></li>
+                <li class="menu-JTR"><a href="JonhTheRipper.html" style="background-color: rgba(0,0,0,0.4)">John The Ripper</a></li>
+                <li class="menu-Hash"><a id="a1" href="Hashcat.html">Hashcat</a></li>
+                <li class="menu-Para"><a id="a1" href="Parallelism.html">Parallelism</a></li>
+                <li class="menu-Pré"><a href="Project.html">Download</a></li>
+                <li1><a id="a1" href="../JonhTheRipper.html">FR</a></li1>
+                <li1 class="menu-co"><a id="a1" href="Signup.html">Sign up</a></li1>
+            </ul>
+        </nav>
+        
+        <br><br>
+        
+        <h1 style="text-align: center; margin-left: -300px; font-family: 'Lobster', cursive; text-decoration: underline">John what?</h1>
+    
+        
+        <div class="grey">
+            <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+            
+            <p>John The Ripper also known as JTR, can crack a password and has three modes for breaking: simple mode, dictionary attack and incremental attack.</p>
+
+            <p>In addition to JTR, Hashcat allows you to use the following techniques: Mask Attack, Hybrid Attack, Rule Attack, and Swap Attack. Some of these techniques are described below.</p>
+            
+            <p>We will now define the different methods of breaking. There are several methods of breaking passwords and each has its advantages and disadvantages, we will focus primarily on these methods:</p>
+            
+            <br>
+            
+            <ul>
+                <li>Brute force:</li>
+                <p>The brute force method is the simplest. It makes it possible to generate all the combinational possibilities and to test them one by one. It has a success rate of 100%. However, it is very expensive in terms of time depending on the speed of the machine used, it can take up to years to crack a password.</p>
+                
+                <br>
+                
+                <li>Dictionary:</li>
+                <p>The dictionary method makes it possible to take as argument a text file containing a list of words in order to test them one by one. This method therefore does not allow to find a password with certainty but can, however, be quick to perform compared to that of brute force.</p>
+                
+                <br>
+                
+                <li>Mask:</li>
+                <p>The method by mask, is a method which makes it possible to reduce considerably the possible combinations and therefore the time of breaking compared to the brute force, by adding conditions. Nevertheless, it requires to know information in advance on the password as the size of the password, the position of capital letters and so on.</p>
+                
+                <br>
+                
+                <li>Combinaison :</li>
+                <p>The combination method is a rather effective method but requires to know beforehand information about the user such as his date of birth, name, first name, hobbies etc., which are put in a dictionary and combined to find the password example: "louis29021999villejuifepitafootball".</p>
+                
+                <br>
+                
+                <li>Rainbow table:</li>
+                <p>This method consists of chopping or retrieving the hash of as many words as possible and associating them with the plaintext in a database. When the attacker would like to find a password, it will be enough to look for the hash in the database and to recover the clear text, if it is there. This technique is extremely effective for simple or widely used passwords because there is no calculation, just do the research. The disadvantage is in the storage of the database, which is often tens of Giga Bytes. Because of the storage inconvenience, we do not intend to implement this method.
+                To gain in efficiency, the mixture of several of these methods is possible.</p>
+                
+            </ul>
+            
+            <a id="cRetour" class="cInvisible" href="#debut"></a>
+            
+        </div>
+        
+        
+        <script>
+                document.addEventListener('DOMContentLoaded', function()
+                {
+                    window.onscroll = function(ev) 
+                    {
+                        document.getElementById("cRetour").className = (window.pageYOffset > 100) ? "cVisible" : "cInvisible";
+                    };
+                });
+        </script>
+        
+        <footer>
+            <div class="footer-menu">
+                <ul>
+                    <li><a href="Blog.html">Blog</a></li>
+                    <li><a href="Links.html">Useful links</a></li>
+                    <li><a href="Presentations.html">About us</a></li>
+                    <li><a href="Contacts.html">Contact us</a></li>
+                </ul>
+                <center style="text-align: center; font-family: 'Roboto', sans-serif;; color:#FFF9FF; font-size: 13px; margin-left: 4.3%">SupA1+1&emsp;|&emsp;2019</center>
+            </div>
+        </footer>
+        
+    </body>
+        
+        
+</html>

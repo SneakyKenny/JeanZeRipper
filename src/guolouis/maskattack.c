@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-int main()
+int main( int argc, char *argv[])
 {
+	char *s = argv[1];
+	argc=argc;
 	unsigned long nombremdp=0;
-	char *s="%1%1";      // OK, ici c'était principalement des test 
+     // OK, ici c'était principalement des test 
 //	int b = s[0];
 //	printf("%s\n position ascii de s[0] =%d\n", s, b);
 	int i = 0;
@@ -141,7 +143,10 @@ int main()
 		{
 			a=1;
 		}
-		mdp[tab[1]]++;
+		 if ( number > 1 )
+		 {
+			 mdp[tab[1]]++;
+		 }
 		for ( int y = 1; y < number && a==0 ; y++ )
 		{	
 //			printf("jsuisla");

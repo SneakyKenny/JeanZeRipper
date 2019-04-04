@@ -73,7 +73,7 @@ int main (int argc, char **argv)
     count  = 1;
     while (count <= max)
     {
-        printf("here we go with this size: %ld\n", count);
+        //printf("here we go with this size: %ld\n", count);
         all_c(st, st2, count, size, size2, words);
         count++;
     }

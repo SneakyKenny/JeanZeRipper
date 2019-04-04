@@ -83,6 +83,8 @@ void freeAllStates(State **allStates, int numStates)
         {
             if (allStates[i]->nf)
                 free(allStates[i]->nf);
+			if (allStates[i]->nextState)
+				free(allStates[i]->nextState);
             free(allStates[i]);
         }
     }

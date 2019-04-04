@@ -5,15 +5,11 @@ int main( int argc, char *argv[])
 {
 	char *s = argv[1];
 	argc=argc;
-	unsigned long nombremdp=0;
-     // OK, ici c'était principalement des test 
-//	int b = s[0];
-//	printf("%s\n position ascii de s[0] =%d\n", s, b);
+	unsigned long nombremdp=0;  // nombremdp = au nombre de combinaison crées
 	int i = 0;
-	int number = 0;
-	int len = strlen(s);
-//	printf("%d = len\n", len);
-	for ( ; s[i] != '\0' ; i++ )	// OK, ici on compte le nombre de pourcentage ( donc de futur boucle)
+	int number = 0; // number = nombre de '%' donc au nombre de caractere qu'il va falloir tourner
+	int len = strlen(s); // len de l'argument d'entrée
+	for ( ; s[i] != '\0' ; i++ ) // on fait la boucle de number 
 	{	
 
 		if ( s[i] == '%' )
@@ -21,34 +17,21 @@ int main( int argc, char *argv[])
 			number++;
 		}
 	}
-//	printf("%d = len-number", len-number);	
-//	printf("%d = number\n", number);
-	char *mdp = calloc(1, len+1);   
+	char *mdp = calloc(1, len+1); // on initialise la chaine de char à 0   
 	int interm=0;
-/*	printf("%s = au débuti\n", mdp);
-	mdp[0]='0';
-	printf("%s = 0 \n", mdp);
-	mdp[1]='p';
-	printf("%s = p\n", mdp);
-	mdp[2]='2';
-	mdp[3]='3';
-
-	mdp[4]='n';
-	printf("%s = n\n", mdp);
-*/	
-	int tab[number];
-	int tam = 0;
-//	int tab1[number];
-	int air = 0;
-	int tabmin[number];
-	int tabmax[number];
-	for (i =0 ; s[i]; )   // OK, ici tabmin c'est la valeur ASCII de 0 ou a soit 47 ou 97
-	{							// pareil pour 
+	int tab[number]; // tab = contenant l'indice de mdp ' a probleme '
+	int tam = 0; // variable intermediaire
+	int tab1[number]; // tab1 contient le type : majuscule/minuscule/char spé/chiffre
+	// 0 = chiffre || 1 = minuscule || 2 = majuscule || 3 = char spé
+	int air = 0; // variable intermediaire 
+	int tabmin[number]; // tabmin contient la 1ere valeur ascii pour le type indice i
+	int tabmax[number];// same pour la derniere valeur ascii 
+	for (i =0 ; s[i]; )   // boucle for pour mettre l'argument dans mdp sans les %
+	{						
 		if ( s[i] != '%' )
 		{
 			mdp[interm]=s[i];
 			interm++;
-//			printf("%s\n", mdp);
 			i++;
 		}
 		else 
@@ -56,81 +39,75 @@ int main( int argc, char *argv[])
 
 			i++;
 			tab[tam]=interm;
-//			printf("tam = %d\n", tam);
-//			printf("tab[%d] = %d\n", tam , tab[tam]);
-			if ( s[i]=='1')
+			if ( s[i]=='1') 		// 1 = alphabet minuscule
 			{
-//				tab1[tam]=1;
-				tabmin[air]=97;        // 1 = ALPHABET
+				tab1[tam]=1;
+				tabmin[air]=97;      
 				tabmax[air]=122;
 				
-//				printf("tabmin[%d]=%d\n", air, tabmin[air]);
 				air++;
 				
 			}
-			if (s[i]=='0')
+			if (s[i]=='0')			// 0 = chiffre
 			{
-//				tab1[tam]=0;			// 0 = CHIFFRE
+				tab1[tam]=0;		
 				tabmin[air]=48;
 				tabmax[air]=57;
 			
 				air++;
 	
 			}
-//			printf("tab1[%d]=%d\n", tam, tab1[tam]);
+			if ( s[i]=='2')			// 2 = alphabet majuscule
+			{
+				tab1[tam]=2;
+				tabmin[air]=65;	
+				tabmax[air]=90; 
+				air++;
+			}
+			if ( s[i]=='3')			// 3 = caractere spéciaux
+			{
+				tab1[tam]=3;
+				tabmin[air]=32;
+				tabmax[air]=126;
+				air++;
+			}
 			tam++;	
 		}
 	}
-//	printf("\n%s\n", mdp);
-//	printf("tabmax[1]=%d\n", tabmax[1]);
-/*	int max;
-	if ( tab1[number-1] == 0)
-	{
-		max = 122;
-		printf("max = %s \n", max);
-	}
-	if ( tab1[number-1] == 1)
-	{
-		max = 57;
-	}
-	printf("max = %s\n", max);
-	
 
-	for ( i = 0; mdp[i]; i++ )
-	{ 
-		printf("mdp[%d] = %d\n", i, mdp[i]);
-	}
-*/
 	
-	for ( i = 0; i < number ; i++ )
-	{
+	for ( i = 0; i < number ; i++ ) // boucle for pour initialiser les caracteres des 
+	{								// positions voulues à leur tabmin respectifs 
 		mdp[tab[i]]=tabmin[i];
 	}
-//	printf("save1\n");
 	int j = 0;
-//	printf("%s %d", s, i);
-//	while ( mdp[tab[number-1]] != tabmax[number-1] )
 	int a = 0;
-/*	for ( i = 0; i < number; i++ )
-	{
-		printf("mdp[tab[%d]] = %d\n", i, mdp[tab[i]]);
-		printf("tabmin[%d]=%d\n", i, tabmin[i]);
-		printf("tabmax[%d]=%d\n", i, tabmax[i]);
-	}
-*/
-
 	while ( a == 0)
 	{
 
-//		printf("bonjour");
-		for ( j = tabmin[0] ; j <= tabmax[0]; j++ )
-		{
-			mdp[tab[0]] = j;
-			nombremdp++;
-			printf("nombremdp = %lu\n", nombremdp);
-		//	printf("mdp[tab[0]] = %d = %d\n", mdp[tab[0]], j);
-			printf("mdp = %s\n" , mdp);
+		for ( j = tabmin[0] ; j <= tabmax[0] ; j++ ) // loop for in order to vary the first
+		{											// caracter 
+			if ( tab1[0] == 3 )	// this is because the ASCII of the special characters 
+			{					// are not one after an other they are seperated
+				if ( j == 48 )
+				{ 
+					j = 58 ;
+				}
+				if ( j == 65)
+				{
+					j = 91;
+				}
+				if ( j == 97)
+				{ 
+					j = 123;
+				}
+			}
+			mdp[tab[0]] = j;  // this is where we CHECK the password, here we just printf
+			nombremdp++;		// count number of passwords created
+	//		printf("nombremdp = %lu\n", nombremdp);   */ here we print the number of passwords created /* 
+			printf("%s\n" , mdp);
 		}
+			
 		int b = 0;
 		for ( i = 0; i < number ; i++ )
 		{
@@ -143,43 +120,36 @@ int main( int argc, char *argv[])
 		{
 			a=1;
 		}
-		 if ( number > 1 )
-		 {
-			 mdp[tab[1]]++;
-		 }
+		if ( number > 1 )
+		{
+			mdp[tab[1]]++;
+		}
 		for ( int y = 1; y < number && a==0 ; y++ )
 		{	
-//			printf("jsuisla");
-	//		if ( mdp[tab[y]] == tabmax[y] && mdp[tab[number-1]]!=tabmax[number-1] )
+			if ( tab1[y] == 3 && mdp[tab[y]] == 48 )
+			{
+				mdp[tab[y]] = 58;
+			}
+			if ( tab1[y] == 3 && mdp[tab[y]] == 65 )
+			{
+				mdp[tab[y]] = 91;
+			}
+			if ( tab1[y] == 3 && mdp[tab[y]] == 97 )
+			{
+				mdp[tab[y]] = 123;
+			}
+
+
 			if ( mdp[tab[y]] == tabmax[y]+1 )
 			{
 				mdp[tab[y]] = tabmin[y];
-//				printf("le mdp = %s\n", mdp);
 				if (tab[y+1])
 				{
 					mdp[tab[y+1]]++;
-//					printf("LE mdp = %s\n", mdp);
 				}
 			}
-		}
+		}	
 	}
-
-	
-
-/*	d[0] = c;
-	d[1]=c;
-	printf("%s\n %d\n ", d, c);
-	d[0] = c+1;
-	printf("save2");
-	printf("%s\n", d);
-	for ( int i = 0; i < 6 ; i++ )
-	{
-		printf("save3\n");
-		d[0]=  i;
-		printf("save4\n");
-		printf("%s  %d \n ", d, i);
-	}
-*/
 	free(mdp);
 }
 

@@ -242,58 +242,57 @@ void all_c(struct stab *st, struct stab *st2, size_t max, int *size,
                 {
                     s2 = tmp2->mdp;
                     strcat(cat, s1);
-                    //printf("mult s1 cat: %s, size: %ld\n", cat, i);
                     strcat(cat, s2);
-                    //printf("mult1: %s, size: %ld \n", cat, h);
+                    printf("%s\n", cat);
                     stab_insert(st2, cat, max);
                     memset(cat, '\0', BUF_SIZE);
                     strcat(cat, s2);
                     strcat(cat, s1);
-                    //printf("mult2: %s, size: %ld\n", cat, h);
+                    printf("%s\n", cat);
                     stab_insert(st2, cat, max);
                     size2[max] += 2;
                     memset(cat, '\0', BUF_SIZE);
                 }
             }
-
-            if (size2[h] && words < 13)
-            {
-                for(tmp2 = stab_get(st2, h); tmp2 != NULL; tmp2 = tmp2->next)
+            if (size2[h])
+            {   for(tmp2 = stab_get(st2, h); tmp2 != NULL; tmp2 = tmp2->next)
                 {
                     s2 = tmp2->mdp;
                     strcat(cat, s1);
                     strcat(cat, s2);
                     stab_insert(st2, cat, max);
-                    //printf("%s, size: %ld\n", cat, h);
+                    printf("%s\n", cat);
                     memset(cat, '\0', BUF_SIZE);
                     strcat(cat, s2);
                     strcat(cat, s1);
                     stab_insert(st2, cat, max);
-                    //printf("%s, size: %ld\n", cat, h);
+                    printf("%s\n", cat);
                     memset(cat, '\0', BUF_SIZE);
                     size2[max] += 2;
                 }
-
-                for (j = 1; j < h; j++)
+                if (words < 13)
                 {
-                    for (len_mdp = 0; len_mdp < h; len_mdp++)
+                    for (j = 1; j < h; j++)
                     {
-                        if (j + len_mdp == h)
+                        for (len_mdp = 0; len_mdp < h; len_mdp++)
                         {
-                            tmp = stab_get(st, j);
-                            tmp2 = stab_get(st, len_mdp);
-                            if (tmp == NULL || tmp2 == NULL)
+                            if (j + len_mdp == h)
+                            {
+                                tmp = stab_get(st, j);
+                                tmp2 = stab_get(st, len_mdp);
+                                if (tmp == NULL || tmp2 == NULL)
+                                    break;
+                                s2 = tmp->mdp;
+                                s3 = tmp2->mdp;
+                                printf("%s%s%s\n", s2, s1, s3);
+                                printf("%s%s%s\n", s3, s1, s2);
+                                len_mdp = max;
                                 break;
-                            s2 = tmp->mdp;
-                            s3 = tmp2->mdp;
-                            printf("%s%s%s\n", s2, s1, s3);
-                            printf("%s%s%s\n", s3, s1, s2);
-                            len_mdp = max;
-                            break;
+                            }
                         }
+                        if (len_mdp == max)
+                            break;
                     }
-                    if (len_mdp == max)
-                        break;
                 }
             }
            //stab_print(st);

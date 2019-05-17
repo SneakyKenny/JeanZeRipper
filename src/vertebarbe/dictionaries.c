@@ -81,6 +81,7 @@ void hash_and_compare(struct DData targets, struct DData dico, size_t buffLen, v
 	}
 }
 
+
 void get_targets(const char *targetPath, struct DData *data)
 {
 	struct stat targetSt;
@@ -90,19 +91,8 @@ void get_targets(const char *targetPath, struct DData *data)
 	FILE *targetsFd = fopen(targetPath, "rb");
 
 	char *mTargets = malloc(targetSt.st_size + 1);
-	//size_t len=0;
-	//ssize_t temp;
-	//struct htab *table = htab_new();
-
-
 	if (targetsFd == NULL)
 		errx(EXIT_FAILURE, "File not found");
-
-	/*mTargets = mmap(NULL, targetSt.st_size, PROT_READ, MAP_SHARED, targetsFd, 0);
-
-	if (mTargets == MAP_FAILED)
-		errx(EXIT_FAILURE, "Could not map file to memory");
-	*/
 
 	fread(mTargets, 1, targetSt.st_size, targetsFd);
 
@@ -118,7 +108,7 @@ struct DData get_data(const char *path)
 	return data;
 }
 
-void dict_attack(const char *targetPath, const char *dictPath, struct BData infos)
+void dict_attack(const char *targetPath, const char *dictPath, struct BData infos)//, int sorted)
 {
 	printf("Loading hashes...\n");
 
@@ -134,6 +124,4 @@ void dict_attack(const char *targetPath, const char *dictPath, struct BData info
 
 	free(targets.map);
 	free(dico.map);
-	//munmap(targets.map, targets.St.st_size);
-	//munmap(dico.map, dico.St.st_size);
 }

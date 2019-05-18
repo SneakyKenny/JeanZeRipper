@@ -1,22 +1,35 @@
 # Makefile
 
 CC=gcc -fsanitize=address -g3
-CPPFLAGS=
 CFLAGS= -Wall -Wextra -std=c99 -fopenmp
-LDFLAGS=
-LDLIBS= -lcrypto -lssl -fopenmp
-
-SRC=  dictionaries.c JTR.c ../purple/hashing/md5.c ../purple/hashing/sha1.c ../purple/hashing/sha256.c ../purple/bruteforce/para_rec/brute_rec.c
+SRC=  dictionaries.c brute_ite.c ../purple/hashing/md5.c ../purple/hashing/sha1.c ../purple/hashing/sha256.c main.c 
 OBJ= ${SRC:.c=.o}
 DEP= ${SRC:.c=.d}
 
-all: JTR
+all: main
 
--include ${DEP}
+main: main.o dictionaries.o brute_ite.o ../purple/hashing/md5.o ../purple/hashing/sha1.o ../purple/hashing/sha256.o
+	gcc -Wall -Wextra -std=c99 -o3 $(shell pkg-config --cflags gtk+-3.0) *.o -o main $(shell pkg-config --libs gtk+-3.0) -rdynamic -lcrypto -lssl -fopenmp -rdynamic
 
-JTR: ${OBJ}
+main.o: main.c
+	gcc -c main.c $(shell pkg-config --cflags --libs gtk+-3.0) -rdynamic -fopenmp
+
+dictionaries.o: dictionaries.c
+	gcc -c dictionaries.c -fopenmp
+
+brute_ite.o: brute_ite.c
+	gcc -c brute_ite.c -fopenmp
+
+../purple/hashing/sha1.o: ../purple/hashing/sha1.c
+	gcc -c ../purple/hashing/sha1.c
+
+../purple/hashing/sha256.o: ../purple/hashing/sha256.c
+	gcc -c ../purple/hashing/sha256.c
+
+../purple/hashing/md5.o: ../purple/hashing/md5.c
+	gcc -c ../purple/hashing/md5.c
 
 clean:
-	rm -f ${OBJ} ${DEP} JTR
+	rm -f ${OBJ} ${DEP} main
 
 # END

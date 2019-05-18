@@ -20,6 +20,7 @@ struct BData
 {
         char *hashbuf;
         void (*hash_func)(char*, char*);
+        char *(*func_make_hash) (char *);
         unsigned char maxCheck;
         unsigned char hashLen;
         size_t nbTargets;

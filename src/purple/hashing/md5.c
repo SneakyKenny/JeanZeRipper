@@ -14,8 +14,10 @@ void md5_hash_from_string(char *s, char *hash)
 
 char *make_md5(char *s)
 {
-	char *md5_hash = malloc(sizeof(char) * 32);
-	
+	char *md5_hash = malloc(sizeof(char) * 32 + 1);
+
+	md5_hash[32] = 0;
+
 	md5_hash_from_string(s, md5_hash);
 
 	return md5_hash;

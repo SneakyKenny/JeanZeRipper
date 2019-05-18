@@ -64,7 +64,7 @@ void hash_and_compare(struct DData targets, struct DData dico, size_t buffLen, v
 			toHash[j-prev] = 0; //we use strlen
 			prev = j + 1; //We skip the '\n'
 			hash_func(toHash, hashed);
-			
+
 			for (off_t k = 0; k < tLen && nbTargets > 0; k+=hashLen)
 			{
 				if (is_same(tMap + k, hashed, maxCheck, hashLen))

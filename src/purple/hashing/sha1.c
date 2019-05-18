@@ -14,8 +14,10 @@ void sha1_hash_from_string(char *s, char *hash)
 
 char *make_sha1(char *s)
 {
-	char *sha1_hash = malloc(sizeof(char) * 40);
-	
+	char *sha1_hash = malloc(sizeof(char) * 40 + 1);
+
+    sha1_hash[40] = 0;
+
 	sha1_hash_from_string(s, sha1_hash);
 
 	return sha1_hash;

@@ -14,8 +14,10 @@ void sha256_hash_from_string(char *s, char *hash)
 
 char *make_sha256(char *s)
 {
-	char *sha256_hash = malloc(sizeof(char) * 64);
-	
+	char *sha256_hash = malloc(sizeof(char) * 64 + 1);
+
+    sha256_hash[64] = 0;
+
 	sha256_hash_from_string(s, sha256_hash);
 
 	return sha256_hash;

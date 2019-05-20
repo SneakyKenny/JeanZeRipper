@@ -1,18 +1,18 @@
-CC=gcc
-CPPFLAGS=
-CFLAGS= -Wall -Wextra -std=c99 -g
-LDFLAGS=
-LDLIBS=
+# Makefile
 
-SRC= main.c
-OBJ= ${SRC:.c=.o}
-DEP= ${SRC:.c=.d}
+CC = gcc
+CFLAGS = -I -Wall -Wextra -lssl -lcrypto -fopenmp -g
+DEPS = ../hashing/*.h ../../vertebarbe/dictionaries.h
+OBJ = main.o ../hashing/md5.o ../hashing/sha1.o ../hashing/sha256.o ../../vertebarbe/dictionaries.o
+NAME = markov
 
-all: main
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
 
--include ${DEP}
-
-main: ${OBJ}
+all: $(OBJ)
+	$(CC) -o $(NAME) $^ $(CFLAGS)
 
 clean:
-	rm -f ${OBJ} ${DEP} main
+	${RM} ${OBJ} *.o *.d ../../vertebarbe/*.d ../hashing/*.d markov
+
+# END

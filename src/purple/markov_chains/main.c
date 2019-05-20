@@ -9,6 +9,8 @@
 
 # include <err.h>
 
+# include "../../vertebarbe/dictionaries.h"
+
 # define separators     " \n\r"
 # define numSep         2
 # define TOTAL_STATES   256
@@ -239,7 +241,7 @@ int main(int argc, char **argv)
     switch (argc)
     {
         case 2: fd = openFileToRead(argv[1]); break;
-        case 3: fd = openFileToRead(argv[1]); maxLen = atoi(argv[2]); break;
+        case 3: case 5: fd = openFileToRead(argv[1]); maxLen = atoi(argv[2]); break;
         default: errx(1, "Usage: %s [file] [maxLen (optionnal)]", argv[0]); break;
     }
 
@@ -273,10 +275,49 @@ int main(int argc, char **argv)
         }
     }
 
-    char *word = generateWord(allStates, numStates, maxLen);
-    printf("%s\n", word);
+    char *file_path = argv[3];
 
-    free(word);
+    struct BData infos;
+    char *hash_type = argv[4];
+
+    if (strcmp(hash_type, "sha1") == 0)
+    {
+        infos.func_make_hash = make_sha1;
+        infos.hashLen = 40;
+    } else if (strcmp(hash_type, "sha256") == 0)
+    {
+        infos.func_make_hash = make_sha256;
+        infos.hashLen = 64;
+    } else if (strcmp(hash_type, "md5") == 0)
+    {
+        infos.func_make_hash = make_md5;
+        infos.hashLen = 32;
+    } else
+    {
+        errx(1, "Supported hash functions are sha1, sha256 and md5.");
+    }
+    infos.maxCheck = infos.hashLen;
+
+    struct DData file_data = get_data(file_path);
+
+    while (1)
+    {
+        char *word = generateWord(allStates, numStates, maxLen);
+        char *hashed_pass = infos.func_make_hash(word);
+
+        for (int i = 0; i < file_data.St.st_size; i++)
+        {
+            if (strncmp(hashed_pass, file_data.map + i, infos.hashLen) == 0)
+            {
+                printf("%s\n", word);
+            }
+            i += infos.hashLen;
+        }
+
+        free(hashed_pass);
+        free(word);
+    }
+
     freeAllStates(allStates, numStates);
 
     return 0;

@@ -35,7 +35,7 @@ static void generate(int maxlen)
         {
             int let0 = 0;
             int let1 = 0;
-            
+
 	    for (int i = len - 2; i < bufLen; i += stride)
             {
                 buffer[i] = alphabet[let0];
@@ -60,8 +60,8 @@ static void generate(int maxlen)
             letters[i] = 0;
 
         int i = len - 3;
-        do 
-	{
+        do
+        {
             letters[i]++;
 
             if (letters[i] >= alphaLen)

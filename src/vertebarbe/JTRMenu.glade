@@ -19,7 +19,9 @@
     <property name="text" translatable="yes">abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!_?.</property>
   </object>
   <object class="GtkTextBuffer" id="D_OUT"/>
-  <object class="GtkTextBuffer" id="M_IN"/>
+  <object class="GtkTextBuffer" id="M_IN">
+    <property name="text" translatable="yes">%u%l%l%d%s</property>
+  </object>
   <object class="GtkTextBuffer" id="Mask_Out"/>
   <object class="GtkAdjustment" id="adjustment1">
     <property name="upper">100000000</property>
@@ -126,6 +128,7 @@
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="halign">center</property>
                     <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
@@ -166,10 +169,12 @@
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="halign">center</property>
                     <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="halign">center</property>
                         <property name="label" translatable="yes">Choose number of threads: </property>
                       </object>
                       <packing>
@@ -182,6 +187,7 @@
                       <object class="GtkComboBoxText" id="threads">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="halign">center</property>
                         <items>
                           <item translatable="yes">1</item>
                           <item translatable="yes">2</item>
@@ -209,6 +215,8 @@
                   <object class="GtkComboBoxText" id="functions">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                     <property name="active">0</property>
                     <items>
                       <item translatable="yes">md5</item>
@@ -315,6 +323,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="title" translatable="yes"/>
+                    <signal name="file-set" handler="change_file" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -339,6 +348,7 @@
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="spacing">7</property>
                     <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
@@ -367,6 +377,7 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
+                    <property name="padding">26</property>
                     <property name="position">0</property>
                   </packing>
                 </child>
@@ -387,19 +398,23 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSpinButton" id="thBinput1">
+                      <object class="GtkComboBoxText" id="threads2">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="text" translatable="yes">1</property>
-                        <property name="caps_lock_warning">False</property>
-                        <property name="adjustment">adjustment1</property>
-                        <property name="climb_rate">1</property>
-                        <property name="numeric">True</property>
-                        <property name="value">1</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">center</property>
+                        <items>
+                          <item translatable="yes">1</item>
+                          <item translatable="yes">2</item>
+                          <item translatable="yes">4</item>
+                          <item translatable="yes">6</item>
+                          <item translatable="yes">8</item>
+                        </items>
+                        <signal name="changed" handler="change_thn" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
+                        <property name="padding">5</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -411,18 +426,39 @@
                   </packing>
                 </child>
                 <child>
+                  <object class="GtkComboBoxText" id="functions2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <property name="active">0</property>
+                    <items>
+                      <item translatable="yes">md5</item>
+                      <item translatable="yes">sha1</item>
+                      <item translatable="yes">sha256</item>
+                    </items>
+                    <signal name="changed" handler="change_func" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
                   <object class="GtkButton" id="GetTextNN1">
                     <property name="label" translatable="yes">Launch attack</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="halign">center</property>
+                    <signal name="clicked" handler="launch_mask" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="padding">30</property>
-                    <property name="position">2</property>
+                    <property name="position">3</property>
                   </packing>
                 </child>
               </object>
@@ -507,7 +543,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="title" translatable="yes"/>
-                        <signal name="file-set" handler="load_train_NN" object="imageTrain" swapped="no"/>
+                        <signal name="file-set" handler="change_file" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -544,6 +580,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="title" translatable="yes"/>
+                        <signal name="file-set" handler="change_dict" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -578,18 +615,22 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSpinButton" id="thDinput">
+                      <object class="GtkComboBoxText" id="threads1">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="caps_lock_warning">False</property>
-                        <property name="adjustment">adjustment1</property>
-                        <property name="climb_rate">1</property>
-                        <property name="numeric">True</property>
-                        <property name="value">1</property>
+                        <property name="can_focus">False</property>
+                        <items>
+                          <item translatable="yes">1</item>
+                          <item translatable="yes">2</item>
+                          <item translatable="yes">4</item>
+                          <item translatable="yes">6</item>
+                          <item translatable="yes">8</item>
+                        </items>
+                        <signal name="changed" handler="change_thn" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
+                        <property name="padding">5</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -598,6 +639,25 @@
                     <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBoxText" id="functions1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">center</property>
+                    <property name="active">0</property>
+                    <items>
+                      <item translatable="yes">md5</item>
+                      <item translatable="yes">sha1</item>
+                      <item translatable="yes">sha256</item>
+                    </items>
+                    <signal name="changed" handler="change_func" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">3</property>
                   </packing>
                 </child>
               </object>
@@ -635,6 +695,7 @@
                       <object class="GtkSwitch">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <signal name="activate" handler="use_combi" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -658,7 +719,7 @@
                     <property name="halign">center</property>
                     <property name="margin_top">50</property>
                     <property name="margin_bottom">15</property>
-                    <signal name="clicked" handler="train_NN" object="Bluffer" swapped="no"/>
+                    <signal name="clicked" handler="launch_dict" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -683,6 +744,7 @@
                   <object class="GtkTextView" id="DOut">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="halign">center</property>
                     <property name="editable">False</property>
                     <property name="cursor_visible">False</property>
                     <property name="buffer">D_OUT</property>
@@ -746,7 +808,7 @@
                     <property name="can_focus">False</property>
                     <property name="halign">center</property>
                     <property name="valign">end</property>
-                    <property name="pixbuf">../../../../../ProjetS3/OCR/icon.svg</property>
+                    <property name="pixbuf">../Web Site/Images/SupA1+1.png</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>

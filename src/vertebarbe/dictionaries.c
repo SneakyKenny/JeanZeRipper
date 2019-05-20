@@ -1,3 +1,5 @@
+#define _GNU_SOURCE
+#include "brute_ite.h" //for the concat()
 #include "dictionaries.h"
 #include "../purple/hashing/hash.h"
 #include <omp.h>
@@ -33,7 +35,7 @@ int is_same(char *target, char *hash, unsigned char len, unsigned char hashLen) 
 	return 1;
 }
 
-void hash_and_compare(struct DData targets, struct DData dico, size_t buffLen, void (*hash_func)(char *, char *), unsigned char maxCheck, unsigned char hashLen)
+void hash_and_compare(struct DData targets, struct DData dico, size_t buffLen, void (*hash_func)(char *, char *), unsigned char maxCheck, unsigned char hashLen, char *result)
 {
 	off_t tLen = targets.St.st_size;
 	off_t dLen = dico.St.st_size;
@@ -69,8 +71,23 @@ void hash_and_compare(struct DData targets, struct DData dico, size_t buffLen, v
 			{
 				if (is_same(tMap + k, hashed, maxCheck, hashLen))
 				{
-					printf("%s:%s\n", hashed, toHash);
-					nbTargets--;
+					#pragma omp critical
+					{
+						size_t len = strlen(result);
+						size_t i = len;
+						size_t max = strlen(toHash);
+						for (; i < hashLen + len; i++)
+							result[i] = hashed[i-len];
+						result[i] = ':';
+						len+=hashLen+1;
+						max+=len;
+						i++;
+						for (; i < max; i++)
+							result[i] = toHash[i-len];
+						result[i] = '\n';
+						printf("%s:%s\n", hashed, toHash);
+						nbTargets--;
+					}
 				}
 				k++; //to skip the '\n'
 			}
@@ -108,7 +125,7 @@ struct DData get_data(const char *path)
 	return data;
 }
 
-void dict_attack(const char *targetPath, const char *dictPath, struct BData infos)//, int sorted)
+char *dict_attack(const char *targetPath, const char *dictPath, struct BData infos)//, int sorted)
 {
 	printf("Loading hashes...\n");
 
@@ -120,8 +137,10 @@ void dict_attack(const char *targetPath, const char *dictPath, struct BData info
 
 	printf("hashing dictionary and comparing entries...\n");
 
-	hash_and_compare(targets, dico, 4096, infos.hash_func, infos.maxCheck, infos.hashLen);
+	char *result = calloc(1, targets.St.st_size*2);
+	hash_and_compare(targets, dico, 4096, infos.hash_func, infos.hashLen, infos.hashLen, result);
 
 	free(targets.map);
 	free(dico.map);
+	return result;
 }

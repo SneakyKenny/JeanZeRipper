@@ -29,6 +29,6 @@ struct BData
 
 struct DData get_data(const char *path);
 int is_same(char *target, char *hash, unsigned char len, unsigned char hashLen);
-void dict_attack(const char *targetPath, const char *dictPath, struct BData infos);
+char *dict_attack(const char *targetPath, const char *dictPath, struct BData infos);
 
 #endif

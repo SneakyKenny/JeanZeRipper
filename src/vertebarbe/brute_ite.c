@@ -1,9 +1,10 @@
+#define _GNU_SOURCE
 #include "brute_ite.h"
 #include <omp.h>
 
-const int NUM_THREAD = 6;
-const char CHARSET[] = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!_?.";
-const int CHARSETLENGTH = sizeof(CHARSET) - 1;
+int NUM_THREAD = 6;
+char *CHARSET = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!_?.";
+int CHARSETLENGTH = 66;
 
 
 int round_nearest(int a, int b)
@@ -21,7 +22,7 @@ void fill_tr_pass(int *trVector, char *pass, size_t start, int length)
 
 	while (start > 0 && i >= 0)
 	{
-		trVector[i] = start % (CHARSETLENGTH);
+		trVector[i] = start % CHARSETLENGTH;
 		pass[i] = CHARSET[trVector[i]];
 		start /= CHARSETLENGTH;
 		i--;
@@ -32,10 +33,20 @@ void fill_tr_pass(int *trVector, char *pass, size_t start, int length)
 		trVector[i] = 0;
 		i--;
 	}
+	
 	//printf("%lu to base 26 : %s\n", temp, pass);
 }
 
-size_t bruteforce(int length, struct DData targets, void (*hash_func)(char *, char *), unsigned char hashLen, size_t nbTargets)
+void concat(char *str1, char *str2)
+{
+	size_t i = 0;
+	for (; str1[i]; i++){}
+	for (size_t j = 0; str2[j]; j++, i++)
+		str1[i] = str2[j];
+	free(str2);
+}
+
+size_t bruteforce(int length, struct DData targets, void (*hash_func)(char *, char *), unsigned char hashLen, size_t nbTargets, char *result)
 {
 	off_t tLen = targets.St.st_size;
 	char *tMap = targets.map;
@@ -51,7 +62,7 @@ size_t bruteforce(int length, struct DData targets, void (*hash_func)(char *, ch
 	endVector[0] = 0;
 	for (int i = 1; i < NUM_THREAD; i++)
 		endVector[i] = endVector[i - 1] + chunk;
-	endVector[NUM_THREAD] = total;
+	endVector[NUM_THREAD] = endVector[NUM_THREAD - 1] + chunk + total % NUM_THREAD;
 
 	#pragma omp parallel num_threads(NUM_THREAD)
 	{
@@ -69,7 +80,7 @@ size_t bruteforce(int length, struct DData targets, void (*hash_func)(char *, ch
 
 		int *trVector = calloc(1, length * sizeof(int));
 		fill_tr_pass(trVector, pass, endVector[tid] , length);
-		//printf("Thread %d started working from %s, chunk = %lu.\n", tid, pass, chunk);
+		printf("Thread %d started working from %s, chunk = %lu. Passwords to find: %lu\n", tid, pass, chunk, nbTargets);
 
 		while ((cur >= 0 && treated <= endVector[tid+1]) && nbTargets > 0)
 		{
@@ -78,10 +89,12 @@ size_t bruteforce(int length, struct DData targets, void (*hash_func)(char *, ch
 			{
 				pass[max] = CHARSET[curInCharset];
 				hash_func(pass, hashed);
-				for (off_t i=0; i < tLen; i+=hashLen)
+				for (off_t i=0; i < tLen; i += hashLen)
 				{
 					if (is_same(tMap + i, hashed, hashLen, hashLen)){
-						printf("%s:%s\n", hashed, pass);
+						char **next;
+						asprintf(next, "%s : %s\n", hashed, pass);
+						concat(result, *next);
 						nbTargets--;
 						break;
 					}
@@ -102,7 +115,7 @@ size_t bruteforce(int length, struct DData targets, void (*hash_func)(char *, ch
 			}
 			if (cur < 0 || treated >= endVector[tid+1])
 			{
-				//printf("Thread %d finished working at %s\n", tid, pass);
+				printf("Thread %d finished working at %s\n", tid, pass);
 				break;
 			}
 			trVector[cur]++;
@@ -117,20 +130,24 @@ size_t bruteforce(int length, struct DData targets, void (*hash_func)(char *, ch
 		//printf("progress :%lu\\%lu passes\nStill %lu passwords to break.\n", n, total, nbTargets);
 	}
 	free(endVector);
-	//printf("\nPasswords generated : %lu\n", n);
+	printf("\nPasswords generated : %lu\n", n);
 	return nbTargets;
 }
 
 
-int brut_attack(const char *targetPath, int maxLen, struct BData infos)
+char *brut_attack(const char *targetPath, int maxLen, struct BData infos, int nb_threads, char *charset)
 {
-	printf("Charset :%s\n", CHARSET);
-
+	CHARSET = charset;
+	CHARSETLENGTH = strlen(charset);
+	printf("Charset :%s, length:%d\n", CHARSET, CHARSETLENGTH);
+	char *result = calloc(1, 4096);
+	NUM_THREAD = nb_threads;
+	printf("threads: %d\n", NUM_THREAD);
 	struct DData targets = get_data(targetPath);
 	size_t nbTargets = targets.St.st_size / infos.hashLen;
 	for (int i = 1; i <= maxLen && nbTargets > 0; i++)
-		nbTargets = bruteforce(i, targets, infos.hash_func, infos.hashLen, nbTargets);
+		nbTargets = bruteforce(i, targets, infos.hash_func, infos.hashLen, nbTargets, result);
 	free(targets.map);
 
-	return 0;
+	return result;
 }

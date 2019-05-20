@@ -2,11 +2,11 @@
 
 CPPFLAGS = -MMD
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99 -O2
+CFLAGS = -Wall -Werror -Wextra -std=c99 -O2
 LDFLAGS =
 LDLIBS = -lm
 
-SRC = main.c combination.c sort.c
+SRC = main.c combination.c
 OBJ = ${SRC:.c=.o}
 DEP = ${SRC:.c=.d}
 

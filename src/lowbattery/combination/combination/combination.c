@@ -13,11 +13,10 @@ void complete(char *words, char *word1, char *word2, int len1, int len2);
 
 void histogram(FILE *fp, int *hist, size_t len)
 {
-    int count;
+    /*int count, c, j = 0;
     char *buffer = NULL;
     size_t i = (size_t)BUF_SIZE;
-
-    for(;;)
+    while((c = fgetc(fp)) != EOF)
     {
         count = getline(&buffer, &i, fp);
         if (count == -1)
@@ -28,7 +27,26 @@ void histogram(FILE *fp, int *hist, size_t len)
         else
             break;
         memset(buffer, '\0', i);
+        j += 1;
     }
+    printf("%i\n", j);
+    fseek(fp, 0, SEEK_SET);
+*/
+    int j = 0;
+    size_t i = 0;
+    //read line by line
+    const size_t line_size = len + 1;
+    char* line = malloc(line_size);
+    while (fgets(line, line_size, fp) != NULL && fgetc(fp) != EOF)
+    {
+        i = strlen(line);
+        if (i > len)
+            break;
+        hist[i - 1] += 1;
+        j += 1;
+    }
+    //printf("%d\n", j);
+    free(line);
     fseek(fp, 0, SEEK_SET);
 }
 

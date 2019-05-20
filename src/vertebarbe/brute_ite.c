@@ -43,7 +43,6 @@ void concat(char *str1, char *str2)
 	for (; str1[i]; i++){}
 	for (size_t j = 0; str2[j]; j++, i++)
 		str1[i] = str2[j];
-	free(str2);
 }
 
 size_t bruteforce(int length, struct DData targets, void (*hash_func)(char *, char *), unsigned char hashLen, size_t nbTargets, char *result)
@@ -92,10 +91,23 @@ size_t bruteforce(int length, struct DData targets, void (*hash_func)(char *, ch
 				for (off_t i=0; i < tLen; i += hashLen)
 				{
 					if (is_same(tMap + i, hashed, hashLen, hashLen)){
-						char **next;
-						asprintf(next, "%s : %s\n", hashed, pass);
-						concat(result, *next);
-						nbTargets--;
+						#pragma omp critical
+						{
+							size_t len = strlen(result);
+							size_t i = len;
+							size_t max = strlen(pass);
+							for (; i < hashLen + len; i++)
+								result[i] = hashed[i-len];
+							result[i] = ':';
+							len+=hashLen + 1;
+							max+=len;
+							i++;
+							for (; i < max; i++)
+								result[i] = pass[i-len];
+							result[i] = '\n';
+							printf("%s : %s\n", hashed, pass);
+							nbTargets--;
+						}
 						break;
 					}
 					i++; //skip '\n'
@@ -140,11 +152,11 @@ char *brut_attack(const char *targetPath, int maxLen, struct BData infos, int nb
 	CHARSET = charset;
 	CHARSETLENGTH = strlen(charset);
 	printf("Charset :%s, length:%d\n", CHARSET, CHARSETLENGTH);
-	char *result = calloc(1, 4096);
 	NUM_THREAD = nb_threads;
 	printf("threads: %d\n", NUM_THREAD);
 	struct DData targets = get_data(targetPath);
 	size_t nbTargets = targets.St.st_size / infos.hashLen;
+	char *result = calloc(1, targets.St.st_size*2);
 	for (int i = 1; i <= maxLen && nbTargets > 0; i++)
 		nbTargets = bruteforce(i, targets, infos.hash_func, infos.hashLen, nbTargets, result);
 	free(targets.map);

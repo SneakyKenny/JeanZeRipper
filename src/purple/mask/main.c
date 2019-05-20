@@ -43,12 +43,11 @@ int main (int argc, char **argv)
     struct DData file_data = get_data(file_path);
 
     int found = 0;
-    char *pass = process(pattern, &found, file_data.map, file_data.St->st_size, infos);
+    char *pass = process(pattern, &found, file_data.map, file_data.St.st_size, infos);
 
     if (found)
         printf("found: %s\n", pass);
 
-    free(file_data.St);
     free(file_data.map);
     free(pass);
 }

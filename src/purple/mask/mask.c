@@ -62,6 +62,8 @@ int generate_rec(char *password, size_t pass_len, size_t *pattern_num_to_pass_in
     // we went all the way down, test if password is correct
     if (cur_pass_index >= pass_len || cur_pattern_index > num_pattern)
     {
+        if (all_passwords && file_size) {infos.hashLen*=2;}
+
         char *hashed_pass = infos.func_make_hash(password);
 
         for (size_t i = 0; i < file_size; i++)

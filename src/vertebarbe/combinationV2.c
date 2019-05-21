@@ -59,9 +59,9 @@ char* concat(const char *s1, const char *s2)
 
 void saveCombinations(const struct vector *vec, size_t max_len, ssize_t prevIndex, const char *str, FILE *fp)
 {
-    for (ssize_t i = 0; i < vec->size; i++)
+    for (size_t i = 0; i < vec->size; i++)
     {
-        if (i == prevIndex)
+        if ((ssize_t)i == prevIndex)
             continue;
 
         char *word = vec->data[i];

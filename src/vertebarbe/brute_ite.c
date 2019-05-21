@@ -37,13 +37,6 @@ void fill_tr_pass(int *trVector, char *pass, size_t start, int length)
 	//printf("%lu to base 26 : %s\n", temp, pass);
 }
 
-void concat(char *str1, char *str2)
-{
-	size_t i = 0;
-	for (; str1[i]; i++){}
-	for (size_t j = 0; str2[j]; j++, i++)
-		str1[i] = str2[j];
-}
 
 size_t bruteforce(int length, struct DData targets, void (*hash_func)(char *, char *), unsigned char hashLen, size_t nbTargets, char *result)
 {

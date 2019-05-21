@@ -7,6 +7,7 @@
 #include <err.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include "combinationV2.h"
 
 GtkTextBuffer *D_OUT;
 GtkTextBuffer *B_OUT;
@@ -91,6 +92,23 @@ void launch_brut(GtkButton *begin)
 void launch_dict(GtkButton *begin)
 {
 	struct BData infos = get_infos();
+	if (COMBI)
+	{
+		printf("IN!!\n");
+		size_t max_len = 18;
+    	FILE *fpr = fopen(DICT, "r");
+    	FILE *fpw = fopen("Result.txt", "w");
+
+    	//Main section
+    	struct vector *vec = CreateVec(fpr);
+    	saveCombinations(vec, max_len, -1, "", fpw);
+    	freeVector(vec);
+    	fclose(fpr);
+    	fclose(fpw);
+		char *result = dict_attack(TARGET, "Result.txt", infos);
+		print_res(result, 'c', D_OUT);
+		return;
+	}
 	char *result = dict_attack(TARGET, DICT, infos);
 	print_res(result, 'd', D_OUT);
 }
@@ -117,9 +135,10 @@ void launch_mask(GtkButton *begin)
 	free(mask);
 }
 
+
 void use_combi(GtkSwitch *sw)
 {
-	COMBI = gtk_switch_get_state(sw);
+	COMBI = !COMBI;
 }
 
 
@@ -177,3 +196,4 @@ int main(int argc, char *argv[])
 
 	return 0;
 }
+
